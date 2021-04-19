@@ -18,26 +18,27 @@ let buttonVolverCambios= document.getElementById("buttonVolverCambios");
 
 let inputImage= document.getElementById("inputImage");
 
-inputImage.addEventListener("onchange", () =>{
-    let reader = new reader();
+inputImage.addEventListener("change", () =>{
+    let reader = new FileReader();
 
     reader.onload= () =>{
         let image= new Image();
         image.src= reader.result;
-        reader.result= new Image();
         image.onload= () => {
-            canvas.height = image.height;
-            canvas.width= image.width;
-            ctx.putImageData(image,0,0);
+            ctx2.drawImage(image,0,0,image.width,image.height);
+            ctx2.putImageData(ctx2.getImageData,0,0,canvas2.width,canvas2.height);
         }
     }
+    reader.readAsDataURL(inputImage.files[0]);
+
+    // borrar imagen inputImage.fila= [];
 });
 
 
 imageData.src = './images/download.jpg';
 
 imageData.onload = () => {
-    myDrawImage(imageData);
+    // myDrawImage(imageData);
 }
 
 buttonsBlackAndWithe.addEventListener("click", () => cambiarBlancoNegro(canvas2, ctx2));
