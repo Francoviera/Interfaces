@@ -1,5 +1,7 @@
 let canvasPaint = document.getElementById('canvasPaint');
     let ctxPaint = canvasPaint.getContext('2d');
+    let heigth= 500;
+    let width= 800;
 
     ctxPaint.lineWidth=1;
 
@@ -9,6 +11,10 @@ let canvasPaint = document.getElementById('canvasPaint');
         x=evento.clientX-canvasPaint.offsetLeft;
         y=evento.clientY-canvasPaint.offsetTop;
 
+        console.log("x", x);
+        console.log("y", y);
+
+
         if(ruta==true){
             ctxPaint.lineTo(x,y);
             console.log("Posicion X:"+ x +" Y:" +y)
@@ -17,6 +23,9 @@ let canvasPaint = document.getElementById('canvasPaint');
     }
 
     canvasPaint.addEventListener('mousemove',dibujar);
+    document.getElementById('body').addEventListener('mouseup',() => {
+        ruta= false;
+    });
 
     canvasPaint.addEventListener('mousedown',function(){
         ruta=true;
