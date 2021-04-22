@@ -44,7 +44,7 @@ document.getElementById("sepia").addEventListener("click", () =>{
     invertirCambios();
     let datosImg= ctx2.getImageData(0,0, 400, 600);
     let pixels= datosImg.data;
-    numPixels = imageData.width * imageData.height; //saco la cantidad de elementos de la matriz (pixels)
+    let numPixels = imageData.width * imageData.height; //saco la cantidad de elementos de la matriz (pixels)
     for ( var i = 0; i < numPixels; i++ ) {
         var r = pixels[ i * 4 ];
         var g = pixels[ i * 4 + 1 ];
@@ -64,24 +64,46 @@ document.getElementById("sepia").addEventListener("click", () =>{
 
 document.getElementById("saturacion").addEventListener("click", () =>{
     invertirCambios();
-    let imageData = ctx2.getImageData(0,0, 400, 600);
-    let pixels= imageData.data;
-    let numPixels = imageData.width * imageData.height;
-    let contrast = 100; // Default value
- 
-    let factor = ( 259 * ( contrast + 255 ) ) / ( 255 * ( 259 - contrast ) );
- 
-    for ( var i = 0; i < numPixels; i++ ) {
-        var r = pixels[ i * 4 ];
-        var g = pixels[ i * 4 + 1 ];
-        var b = pixels[ i * 4 + 2 ];
- 
-        pixels[ i * 4 ] = factor * ( r - 128 ) + 128;
-        pixels[ i * 4 + 1 ] = factor * ( g - 128 ) + 128;
-        pixels[ i * 4 + 2 ] = factor * ( b - 128 ) + 128;
+    let datosImg= ctx2.getImageData(0,0, 400, 600);
+    let pixels= datosImg.data;
+    let numPixels = imageData.width * imageData.height; //saco la cantidad de elementos de la matriz (pixels)
+    console.log(numPixels)
+    for ( let i = 0; i < numPixels; i++ ) {
+        console.log("aaaaa")
+        let r = pixels[ i * 4 ];
+        let g = pixels[ i * 4 + 1 ];
+        let b = pixels[ i * 4 + 2 ];
+
+        let hsl = rgbToHsl(r, g, b);
+        hsl[1] += hsl[1] + .9999;
+        let rgb = hslToRgb(hsl[0], hsl[1], hsl[2]);
+
+        datosImg.data[i * 4] = rgb[0];
+        datosImg.data[i * 4 + 1] = rgb[1];
+        datosImg.data[i * 4 + 2] = rgb[2];
+
     }
+    ctx2.putImageData( datosImg, 0, 0 );
+
+    //ESTO ES CONTRASTE
+    // let imageData = ctx2.getImageData(0,0, 400, 600);
+    // let pixels= imageData.data;
+    // let numPixels = imageData.width * imageData.height;
+    // let contrast = 100; // Default value
  
-    ctx2.putImageData( imageData, 0, 0 );
+    // let factor = ( 259 * ( contrast + 255 ) ) / ( 255 * ( 259 - contrast ) );
+ 
+    // for ( var i = 0; i < numPixels; i++ ) {
+    //     var r = pixels[ i * 4 ];
+    //     var g = pixels[ i * 4 + 1 ];
+    //     var b = pixels[ i * 4 + 2 ];
+ 
+    //     pixels[ i * 4 ] = factor * ( r - 128 ) + 128;
+    //     pixels[ i * 4 + 1 ] = factor * ( g - 128 ) + 128;
+    //     pixels[ i * 4 + 2 ] = factor * ( b - 128 ) + 128;
+    // }
+ 
+    // ctx2.putImageData( imageData, 0, 0 );
 });
 
 document.getElementById("saveImage").addEventListener("click", () =>{
@@ -114,22 +136,58 @@ function invertirCambios(){
     ctx2.putImageData(imageData,0,0);
 }
 
-const  dragImgDegrado = (imgData,x,y,r,g,b,a) => {
-    let index = (x + y * imgData.height) *4;
-    imgData.data[index + 0] = r;
-    imgData.data[index + 1] = g;
-    imgData.data[index + 2] = b;
-    imgData.data[index + 3] = a;
+function rgbToHsl(r, g, b) {
+    r /= 255, g /= 255, b /= 255;
+    var max = Math.max(r, g, b),
+    min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+    
+    if (max == min) {
+        h = s = 0; // achromatic
+    } else {
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+            case r:
+                h = (g - b) / d + (g < b ? 6 : 0);
+                break;
+                case g:
+                h = (b - r) / d + 2;
+                break;
+                case b:
+                    h = (r - g) / d + 4;
+                    break;
+                }
+                h /= 6;
+    }
+    
+    return [h, s, l];
+}
+function hslToRgb(h, s, l) {
+    var r, g, b;
+
+    if (s == 0) {
+        r = g = b = l; // achromatic
+    } else {
+        var hue2rgb = function hue2rgb(p, q, t) {
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1 / 6) return p + (q - p) * 6 * t;
+            if (t < 1 / 2) return q;
+            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+            return p;
+        }
+        
+        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        var p = 2 * l - q;
+        r = hue2rgb(p, q, h + 1 / 3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1 / 3);
+    }
+
+    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 }
 
-// for (let x = 0; x < width; x++) {
-//     for (let y = 0; y < height; y++) {
-//         dragImgDegrado(imgData,x,y,255+x,0+x,0+x,255+x);
-//     }
-
-//  }
-//  ctx3.putImageData(imgData, 50, 50);
-    
 
 function invertirColores(canvas, ctx){
     invertirCambios();
@@ -139,7 +197,7 @@ function invertirColores(canvas, ctx){
         datosImg.data[index] = 255 - datosImg.data[index];
         datosImg.data[index+1] = 255 - datosImg.data[index+1];
         datosImg.data[index+2] = 255 - datosImg.data[index+2];
-
+        
     }
     ctx.putImageData(datosImg,0,0);
 }
@@ -153,7 +211,14 @@ function cambiarBlancoNegro(ctx){
         datosImg.data[index] = aux;
         datosImg.data[index+1] = aux;
         datosImg.data[index+2] = aux;
-
+        
     }
     ctx.putImageData(datosImg,0,0);
 }
+// for (let x = 0; x < width; x++) {
+//     for (let y = 0; y < height; y++) {
+//         dragImgDegrado(imgData,x,y,255+x,0+x,0+x,255+x);
+//     }
+
+//  }
+//  ctx3.putImageData(imgData, 50, 50);
