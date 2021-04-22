@@ -10,7 +10,7 @@ let buttonInvertirColores= document.getElementById("invertirColores");
 let buttonVolverCambios= document.getElementById("buttonVolverCambios");
 
 buttonsBlackAndWithe.addEventListener("click", () => cambiarBlancoNegro(ctx2));
-buttonInvertirColores.addEventListener("click", () => invertirColores(canvas2, ctx2));
+buttonInvertirColores.addEventListener("click", () => invertirColores(ctx2));
 buttonVolverCambios.addEventListener("click", () => invertirCambios(ctx2));
 
 let inputImage= document.getElementById("inputImage");
@@ -121,8 +121,8 @@ document.getElementById("saveImage").addEventListener("click", () =>{
 
 
 
-const myDrawImage = (imgData) => {
-        ctx2.drawImage(imgData, 0, 0);
+const myDrawImage = (imageData) => {
+        ctx2.drawImage(imageData, 0, 0);
         let datos= ctx2.getImageData(0,0, 400, 600);
         // for (let index = 0; index < 600*400; index++) {
         //     datos.data[index * 4]= 4;
@@ -188,8 +188,63 @@ function hslToRgb(h, s, l) {
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 }
 
+document.getElementById("blur").addEventListener("click", () =>{
+    invertirCambios();
+    let image = ctx2.getImageData(0, 0, imageData.width, imageData.height);
+    let matrizBlur = [[1, 1, 1],[1, 1, 1],[1, 1, 1]];
+    for (let x = 0; x < imageData.width; x++) {
+        for (let y = 0; y < imageData.height; y++) {
+            matrizOfPixel(image, x, y, matrizBlur)
+        }
+    }
 
-function invertirColores(canvas, ctx){
+    ctx2.putImageData(image, 0, 0);
+});
+
+function matrizOfPixel (image, x, y, matriz) {
+    promedioColor = (color) => {
+        p0 = image.data[ul + color] * matriz[0][0]/9;
+        p1 = image.data[uc + color] * matriz[0][1]/9;
+        p2 = image.data[ur + color] * matriz[0][2]/9;
+        p3 = image.data[ml + color] * matriz[1][0]/9;
+        p4 = image.data[mc + color] * matriz[1][1]/9;
+        p5 = image.data[mr + color] * matriz[1][2]/9;
+        p6 = image.data[ll + color] * matriz[2][0]/9;
+        p7 = image.data[lc + color] * matriz[2][1]/9;
+        p8 = image.data[lr + color] * matriz[2][2]/9;
+    }
+
+    //Variables de ubicacion de pixel
+    let ul = ((x - 1 + image.width) % image.width + image.width * ((y - 1 + image.height) % image.height)) * 4;
+    let uc = ((x - 0 + image.width) % image.width + image.width * ((y - 1 + image.height) % image.height)) * 4;
+    let ur = ((x + 1 + image.width) % image.width + image.width * ((y - 1 + image.height) % image.height)) * 4;
+    let ml = ((x - 1 + image.width) % image.width + image.width * ((y + image.height) % image.height)) * 4;
+    let mc = ((x - 0 + image.width) % image.width + image.width * ((y + image.height) % image.height)) * 4;
+    let mr = ((x + 1 + image.width) % image.width + image.width * ((y + image.height) % image.height)) * 4;
+    let ll = ((x - 1 + image.width) % image.width + image.width * ((y + 1 + image.height) % image.height)) * 4;
+    let lc = ((x - 0 + image.width) % image.width + image.width * ((y + 1 + image.height) % image.height)) * 4;
+    let lr = ((x + 1 + image.width) % image.width + image.width * ((y + 1 + image.height) % image.height)) * 4;
+
+    let p0, p1, p2, p3, p4, p5, p6, p7, p8;
+    
+    promedioColor(0);
+    let red = (p0 + p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8);
+
+    promedioColor(1);
+    let green = (p0 + p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8);
+
+    promedioColor(2);
+    let blue = (p0 + p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8);
+
+    image.data[mc] = red;
+    image.data[mc + 1] = green;
+    image.data[mc + 2] = blue;
+    image.data[mc + 3] = image.data[lc + 3];
+}
+
+
+
+function invertirColores(ctx){
     invertirCambios();
     let datosImg= ctx.getImageData(0,0, 400, 600);
     let data= datosImg.data;
@@ -217,8 +272,8 @@ function cambiarBlancoNegro(ctx){
 }
 // for (let x = 0; x < width; x++) {
 //     for (let y = 0; y < height; y++) {
-//         dragImgDegrado(imgData,x,y,255+x,0+x,0+x,255+x);
+//         dragImgDegrado(imageData,x,y,255+x,0+x,0+x,255+x);
 //     }
 
 //  }
-//  ctx3.putImageData(imgData, 50, 50);
+//  ctx3.putImageData(imageData, 50, 50);
