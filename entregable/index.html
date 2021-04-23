@@ -11,13 +11,14 @@
     </style>
     <title>Paint</title>
 </head>
-<body id="body">  
+<body>  
     <center>
           <h1>Paint</h1>
           <section id= "main">
             Color de linea: <input type="color" onchange="colorLinea(this)">
             Ancho de linea: <input type="range" onchange="anchoLinea(this)" max="200" min="1" value="1"><span id="valor">0</span>
             <input type="button" value="Limpiar" onclick="limpiar()">
+            <input type="button" id="borrarActive" value="Borrar">
           </section>
     <canvas id="canvasPaint" width="800" height="500" ></canvas>
   </center>

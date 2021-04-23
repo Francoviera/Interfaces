@@ -204,7 +204,7 @@ document.getElementById("blur").addEventListener("click", () =>{
 document.getElementById("deteccionBordes").addEventListener("click", () =>{
     invertirCambios();
     let image = ctx2.getImageData(0, 0, imageData.width, imageData.height);
-    let matrizBlur = [[1, 1, 1],[1, -2, 1],[1, 1, -1]];
+    let matrizBlur = [[1, 1, 1],[1, 0, 1],[1, -1, -1]];
     // let matrizBlur = [[0, 1, 0],[1, -4, 1],[0, 1, 0]];
     for (let x = 0; x < imageData.width; x++) {
         for (let y = 0; y < imageData.height; y++) {

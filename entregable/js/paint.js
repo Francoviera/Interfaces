@@ -2,6 +2,7 @@ let canvasPaint = document.getElementById('canvasPaint');
     let ctxPaint = canvasPaint.getContext('2d');
     let heigth= 500;
     let width= 800;
+    let borrado= false;
 
     ctxPaint.lineWidth=1;
 
@@ -11,10 +12,6 @@ let canvasPaint = document.getElementById('canvasPaint');
         x=evento.clientX-canvasPaint.offsetLeft;
         y=evento.clientY-canvasPaint.offsetTop;
 
-        console.log("x", x);
-        console.log("y", y);
-
-
         if(ruta==true){
             ctxPaint.lineTo(x,y);
             console.log("Posicion X:"+ x +" Y:" +y)
@@ -22,17 +19,50 @@ let canvasPaint = document.getElementById('canvasPaint');
         }
     }
 
-    canvasPaint.addEventListener('mousemove',dibujar);
-    document.getElementById('body').addEventListener('mouseup',() => {
-        ruta= false;
+    function borrar(event){
+        x=mousePos(canvasPaint, event).x;
+        y=mousePos(canvasPaint, event).y;
+
+        if(borrado){
+            ctxPaint.clearRect(x,y,20,20);
+        }
+    }
+
+    function mousePos(canvas, event){
+       let clientRect= canvas.getBoundingClientRect();
+       return{
+           x: Math.round(event.clientX - clientRect.left),
+           y: Math.round(event.clientY - clientRect.top)
+       }
+    }
+    let btnBorrar= document.getElementById('borrarActive');
+    btnBorrar.addEventListener('click',() => {
+        borrado= !borrado
+        if(borrado){
+            btnBorrar.value="Dibujar";
+        }else {
+            btnBorrar.value="Borrar";
+        }
     });
 
+    canvasPaint.addEventListener('mousemove',dibujar);
+
+    canvasPaint.addEventListener('mouseout', function() {
+        ruta = false;
+    })
+
     canvasPaint.addEventListener('mousedown',function(){
-        ruta=true;
-        ctxPaint.beginPath();
-        ctxPaint.moveTo(x,y);
-        console.log("Posicion inicial X:"+ x +" Y:" +y)
-        canvasPaint.addEventListener('mousemove', dibujar);
+        if(!borrado){
+            ruta=true;
+            ctxPaint.beginPath();
+            ctxPaint.moveTo(x,y);
+            console.log("Posicion inicial X:"+ x +" Y:" +y)
+            canvasPaint.addEventListener('mousemove', dibujar);
+        }else{
+            ctxPaint.beginPath();
+            ctxPaint.moveTo(x,y);
+            canvasPaint.addEventListener('mousemove', borrar);
+        }
 
     });
     canvasPaint.addEventListener('mouseup', function(){
