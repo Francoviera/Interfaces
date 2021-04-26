@@ -6,13 +6,13 @@ let canvasPaint = document.getElementById('canvasPaint');
 
     ctxPaint.lineWidth=1;
 
-    var ruta=false;
+    var trazo=false;
 
     function dibujar(evento){
         x=evento.clientX-canvasPaint.offsetLeft;
         y=evento.clientY-canvasPaint.offsetTop;
 
-        if(ruta==true){
+        if(!borrado && trazo){
             ctxPaint.lineTo(x,y);
             console.log("Posicion X:"+ x +" Y:" +y)
             ctxPaint.stroke();
@@ -23,7 +23,7 @@ let canvasPaint = document.getElementById('canvasPaint');
         x=mousePos(canvasPaint, event).x;
         y=mousePos(canvasPaint, event).y;
 
-        if(borrado){
+        if(borrado && trazo){
             ctxPaint.clearRect(x,y,20,20);
         }
     }
@@ -48,17 +48,18 @@ let canvasPaint = document.getElementById('canvasPaint');
     canvasPaint.addEventListener('mousemove',dibujar);
 
     canvasPaint.addEventListener('mouseout', function() {
-        ruta = false;
+        trazo = false;
     })
 
     canvasPaint.addEventListener('mousedown',function(){
         if(!borrado){
-            ruta=true;
+            trazo=true;
             ctxPaint.beginPath();
             ctxPaint.moveTo(x,y);
             console.log("Posicion inicial X:"+ x +" Y:" +y)
             canvasPaint.addEventListener('mousemove', dibujar);
         }else{
+            trazo=true;
             ctxPaint.beginPath();
             ctxPaint.moveTo(x,y);
             canvasPaint.addEventListener('mousemove', borrar);
@@ -66,7 +67,7 @@ let canvasPaint = document.getElementById('canvasPaint');
 
     });
     canvasPaint.addEventListener('mouseup', function(){
-        ruta=false;
+        trazo=false;
     })
 
     function colorLinea(color){
