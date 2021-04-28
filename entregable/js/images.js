@@ -1,5 +1,5 @@
 
-let canvas2 = document.getElementById("practicaEdited");
+let canvas2 = document.getElementById("canvasPaint");
 let ctx2 = canvas2.getContext('2d');
 
 // let width = 640;
@@ -208,6 +208,7 @@ document.getElementById("deteccionBordes").addEventListener("click", () =>{
     invertirCambios();
     let image = ctx2.getImageData(0, 0, imageData.width, imageData.height);
     let matriz = [[1, 1, 1],[1, 0.2, 1],[1, -1, -1]];
+    // let matriz = [[1, 1, 1],[1, 0, 1],[1, -1, -1]];
     // let matriz = [[0, 1, 0],[1, -4, 1],[0, 1, 0]];
     for (let x = 0; x < imageData.width; x++) {
         for (let y = 0; y < imageData.height; y++) {
