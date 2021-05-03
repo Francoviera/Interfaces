@@ -12,7 +12,7 @@
   <div class="container">
     <div>
       <h1>Paint</h1>
-      <section id= "main">
+      <section >
         Color de linea: <input type="color" onchange="colorLinea(this)">
         Ancho de linea: <input type="range" onchange="anchoLinea(this)" max="200" min="1" value="1"><span id="valor">0</span>
         <input class="btn btn-warning" type="button" value="Limpiar" onclick="limpiar()">
@@ -24,28 +24,28 @@
       <h5 class="card-title mt-5">Editar Imagen</h5>
       <div class="col-6 mb-2">
         <input id="inputImage" type="file" placeholder="Ingrese Imagen">
-        <button class="btn btn-danger" id="deleteImage">Borrar Imagen</button>
-        <button class="btn btn-success" id="saveImage">Guardar Imagen</button>
+        <div class="mt-2">
+          <button class="btn btn-danger" id="deleteImage">Borrar Imagen</button>
+          <button class="btn btn-success" id="saveImage">Guardar Imagen</button>
+        </div>
       </div>
     </div>
     <div class="row">
         <div class="col-8 mb-2">
-        <button class="btn btn-primary" id="aBlancoNegro">Cambiar Blanco Negro</button>
-        <button class="btn btn-primary" id="invertirColores">Invertir Colores</button>
+        <button class="btn btn-primary" id="aBlancoNegro">Grises</button>
+        <button class="btn btn-primary" id="invertirColores">Negativo</button>
+        <button class="btn btn-primary" id="brillo">Brillo</button>
         <button class="btn btn-primary" id="sepia">Sepia</button>
-        <button class="btn btn-primary" id="saturacion">saturacion</button>
       </div>
     </div>
     <div class="row">
       <div class="col-8 mb-2">
         <button class="btn btn-primary" id="blur">blur</button>
+        <button class="btn btn-primary" id="saturacion">saturacion</button>
         <button class="btn btn-primary" id="deteccionBordes">deteccionBordes</button>
         <button class="btn btn-warning" id="buttonVolverCambios">Invertir Cambios</button>
       </div>
     </div>
-      <div class="container">
-        <canvas id="practicaEdited" width="600" height="400"></canvas>
-      </div>   
     </div>
   </div>
 

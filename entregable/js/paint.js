@@ -6,7 +6,7 @@ let canvasPaint = document.getElementById('canvasPaint');
 
     ctxPaint.lineWidth=1;
 
-    var trazo=false;
+    let trazo=false;
 
     function dibujar(evento){
         x=evento.clientX-canvasPaint.offsetLeft;
@@ -56,7 +56,7 @@ let canvasPaint = document.getElementById('canvasPaint');
             trazo=true;
             ctxPaint.beginPath();
             ctxPaint.moveTo(x,y);
-            console.log("Posicion inicial X:"+ x +" Y:" +y)
+            console.log("posicion x:"+ x +" y:" +y)
             canvasPaint.addEventListener('mousemove', dibujar);
         }else{
             trazo=true;
@@ -71,12 +71,9 @@ let canvasPaint = document.getElementById('canvasPaint');
     })
 
     function colorLinea(color){
-        console.log(color.value);
         ctxPaint.strokeStyle = color.value;
     }
     function anchoLinea(ancho){
-        console.log(ancho.value);
-
         ctxPaint.lineWidth = ancho.value;
         document.getElementById("valor").innerHTML=ancho.value;
     }

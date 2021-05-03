@@ -1,5 +1,5 @@
 
-let canvas2 = document.getElementById("practicaEdited");
+let canvas2 = document.getElementById("canvasPaint");
 let ctx2 = canvas2.getContext('2d');
 
 // let width = 640;
@@ -8,10 +8,13 @@ let ctx2 = canvas2.getContext('2d');
 let buttonsBlackAndWithe= document.getElementById("aBlancoNegro");
 let buttonInvertirColores= document.getElementById("invertirColores");
 let buttonVolverCambios= document.getElementById("buttonVolverCambios");
+let btnBrillo= document.getElementById("brillo");
 
 buttonsBlackAndWithe.addEventListener("click", () => cambiarBlancoNegro(ctx2));
 buttonInvertirColores.addEventListener("click", () => invertirColores(ctx2));
 buttonVolverCambios.addEventListener("click", () => invertirCambios(ctx2));
+btnBrillo.addEventListener("click", () => brillo());
+
 
 let inputImage= document.getElementById("inputImage");
 let imageData= null;
@@ -143,7 +146,7 @@ function rgbToHsl(r, g, b) {
     var h, s, l = (max + min) / 2;
     
     if (max == min) {
-        h = s = 0; // achromatic
+        h = s = 0; 
     } else {
         var d = max - min;
         s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
@@ -191,10 +194,10 @@ function hslToRgb(h, s, l) {
 document.getElementById("blur").addEventListener("click", () =>{
     invertirCambios();
     let image = ctx2.getImageData(0, 0, imageData.width, imageData.height);
-    let matrizBlur = [[1, 1, 1],[1, 1, 1],[1, 1, 1]];
+    let matriz = [[1, 1, 1],[1, 1, 1],[1, 1, 1]];
     for (let x = 0; x < imageData.width; x++) {
         for (let y = 0; y < imageData.height; y++) {
-            matrizOfPixel(image, x, y, matrizBlur)
+            matrizOfPixel(image, x, y, matriz)
         }
     }
 
@@ -204,11 +207,12 @@ document.getElementById("blur").addEventListener("click", () =>{
 document.getElementById("deteccionBordes").addEventListener("click", () =>{
     invertirCambios();
     let image = ctx2.getImageData(0, 0, imageData.width, imageData.height);
-    let matrizBlur = [[1, 1, 1],[1, 0, 1],[1, -1, -1]];
-    // let matrizBlur = [[0, 1, 0],[1, -4, 1],[0, 1, 0]];
+    let matriz = [[1, 1, 1],[1, 0.2, 1],[1, -1, -1]];
+    // let matriz = [[1, 1, 1],[1, 0, 1],[1, -1, -1]];
+    // let matriz = [[0, 1, 0],[1, -4, 1],[0, 1, 0]];
     for (let x = 0; x < imageData.width; x++) {
         for (let y = 0; y < imageData.height; y++) {
-            matrizOfPixel(image, x, y, matrizBlur)
+            matrizOfPixel(image, x, y, matriz)
         }
     }
 
@@ -228,7 +232,6 @@ function matrizOfPixel (image, x, y, matriz) {
         p8 = image.data[lr + color] * matriz[2][2]/9;
     }
 
-    //Variables de ubicacion de pixel
     let ul = ((x - 1 + image.width) % image.width + image.width * ((y - 1 + image.height) % image.height)) * 4;
     let uc = ((x - 0 + image.width) % image.width + image.width * ((y - 1 + image.height) % image.height)) * 4;
     let ur = ((x + 1 + image.width) % image.width + image.width * ((y - 1 + image.height) % image.height)) * 4;
@@ -269,6 +272,26 @@ function invertirColores(ctx){
         
     }
     ctx.putImageData(datosImg,0,0);
+}
+
+function brillo(){
+    // invertirCambios();
+    let data = ctx2.getImageData(0, 0, imageData.width, imageData.height);
+    let pixels = data.data;
+    console.log(pixels)
+
+    for (let i = 0; i < imageData.width * imageData.height; i++) {
+        let r = pixels[i * 4];
+        let g = pixels[i * 4 + 1];
+        let b = pixels[i * 4 + 2];
+
+
+        pixels[i * 4] = r + 25;
+        pixels[i * 4 + 1] = g + 25;
+        pixels[i * 4 + 2] = b + 25;
+        //va aumentado hasta que llega al color blanco
+    }
+    ctx2.putImageData(data, 0, 0)
 }
 
 function cambiarBlancoNegro(ctx){
