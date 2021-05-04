@@ -1,29 +1,37 @@
-
 class Figura{
-    let x;
-    let y;
-    let fill;
-    let context;
-    constructor(x,y,fill, context){
+    constructor(x,y,radio, ctx, color, equipo){
         this.x= x;
         this.y= y;
-        this.fill= fill;
-        this.context= context;
+        this.radio= radio;
+        this.ctx= ctx;
+        this.color= color;
+        this.equipo= equipo;
     }
 
-    function setFill(fill){
-        this.fill= fill;
+    draw(){
+        this.ctx.beginPath();
+        this.ctx.arc(this.x,this.y,this.radio,0, 2 * Math.PI);
+        this.ctx.fillStyle = this.color;
+        this.ctx.fill();
+        this.ctx.moveTo(110,75);
+        this.ctx.closePath();
+        this.ctx.stroke();
     }
-    function getPosition(){
+
+    // setFill(radio){
+    //     this.radio= radio;
+    // }
+    getPosition(){
         return{
-            x: this.getX(),
-            y: this.getY(),
+            x: this.x,
+            y: this.y,
         }
     }
-    function getX(){
-        return this.x;
+    hit(x,y){
+        return  (Math.sqrt((x - this.x) ** 2 + (y - this.y) ** 2) < this.radio);
     }
-    function getY(){
-        return this.x;
+    move(x,y){
+        this.x = x;
+        this.y = y;
     }
 }
