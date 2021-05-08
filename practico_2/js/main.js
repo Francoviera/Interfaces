@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
     })
     canvas.addEventListener('mouseup', (eMouseUp) => {
+        console.log("borro")
         canvas.removeEventListener('mousemove', juego.handleDrag);
         juego.stopDragging();
     })

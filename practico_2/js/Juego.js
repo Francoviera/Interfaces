@@ -35,6 +35,7 @@ class Juego{
         this.dibujando = false;
     }
     checkMove(){
-        // this.tablero.checkMove(this.selectedChip)
+        let place= this.tablero.checkMove(this.selectedChip);
+        console.log(place)
     }
 }
