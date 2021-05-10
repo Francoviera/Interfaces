@@ -1,11 +1,11 @@
 class Figura{
-    constructor(x,y,radio, ctx, color, equipo){
+    constructor(x,y,radio, ctx, color, team){
         this.x= x;
         this.y= y;
         this.radio= radio;
         this.ctx= ctx;
         this.color= color;
-        this.equipo= equipo;
+        this.team= team;
     }
 
     draw(){

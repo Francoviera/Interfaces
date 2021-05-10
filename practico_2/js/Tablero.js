@@ -24,7 +24,8 @@ class Tablero{
                     posY: 100 + (y * 100),
                     width: 90,
                     height: 90,
-                    ocupado: false
+                    ocupado: false,
+                    team: ""
                 };
                 if(x==0){
                     this.espacios[y] = new Array(this.size);
@@ -34,23 +35,79 @@ class Tablero{
         }
     }
 
-    isX(ficha, x){
-        return ((ficha-x) < 100);
+    isPlace(ficha, place){
+        return ((ficha-place) < 100);
+    }
+
+    checkJuego(ficha){
+        // debugger;
+        let x= 0;
+        let y= 0;
+        let foundX= false;
+        let foundY= false;
+
+        while(x < 8 && y < 8 ){
+            if (!foundX && this.isPlace(ficha.x, this.espacios[y][x].posX)) {
+                foundX= true;
+            }
+            if(!foundX){
+                x++;
+            }
+            if(foundX && !foundY){
+                if(this.isPlace(ficha.y, this.espacios[y][x].posY)){
+                   foundY= true;
+                }else{
+                    y++
+                }
+            }
+
+            if(foundX && foundY){
+                if(this.checkHorizontal(x,y, ficha) || this.checkVertical(x,y, ficha)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
+    }
+
+    checkHorizontal(x, y, ficha){
+        let j = 3;
+        let cantFichas= 0;
+        for (let i = -2; i < j; i++) {
+            if(i != 0 && x+i > 0 && x+i < 8){
+                if(this.espacios[y][x+i] && this.espacios[y][x+i].team == ficha.team){
+                    cantFichas++;
+                }
+            }
+        }
+        return cantFichas == 4;
+    }
+
+    checkVertical(x, y, ficha){
+        let j = 3;
+        let cantFichas= 0;
+        for (let i = -2; i < j; i++) {
+            if(i != 0 && x+i > 0 && y+i < 8){
+                if(this.espacios[y][x+i] && this.espacios[y+i][x].team == ficha.team){
+                    cantFichas++;
+                }
+            }
+        }
+        return cantFichas == 4;
     }
 
     checkMove(ficha) {
-        // debugger;
-        if((ficha.x >= 200 && ficha.x <= 800) && (ficha.y >= 200 && ficha.y <= 800)){
+        if((ficha.x >= 200 && ficha.x <= 1000) && (ficha.y >= 200 && ficha.y <= 1000)){
             let x= 0;
             let y= 0;
             let foundX= false;
-            // let foundY= false; corta solo con el return 
             let place= {
                 x: "",
                 y: ""
             }
             while(x < 8 && y < 8 ){
-                if (!foundX && this.isX(ficha.x, this.espacios[y][x].posX)) {
+                if (!foundX && this.isPlace(ficha.x, this.espacios[y][x].posX)) {
                     foundX= true;
                 }
                 if(!foundX){
@@ -62,6 +119,7 @@ class Tablero{
                         place.y= this.espacios[y][x].posY;
                         if(y == 7){
                             this.espacios[y][x].ocupado = true;
+                            this.espacios[y][x].team = ficha.team;
                         }
                         y++;
                     }else{
@@ -115,10 +173,18 @@ class Tablero{
             })
         })
     }
-    getSelected(x, y){
-        for (let ficha of this.team1) {
-            if(ficha.hit(x,y)){
-                return ficha;
+    getSelected(x, y, team1){
+        if(team1){
+            for (let ficha of this.team1) {
+                if(ficha.hit(x,y)){
+                    return ficha;
+                }
+            }
+        }else{
+            for (let ficha of this.team2) {
+                if(ficha.hit(x,y)){
+                    return ficha;
+                }
             }
         }
     }

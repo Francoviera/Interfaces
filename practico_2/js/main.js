@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     // let heigth= 600;
 
     let canvas= document.getElementById("canvas");
+    let turno= document.getElementById("turno");
     // canvas.width= width;
     // canvas.heigth= heigth;
 
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     //  ctx.fill();
     //  ctx.closePath();
 
-    let juego = new Juego(ctx, 1400, 1000);
+    let juego = new Juego(ctx, 1400, 1000, turno);
 
     juego.draw();
 
