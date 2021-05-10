@@ -34,39 +34,77 @@ class Tablero{
         }
     }
 
-    checkMove(ficha) {
-        debugger;
-        // let j= 1;
-        let place= {
-            x: "",
-            y: ""
-        }
-        while(x < this.espacios[x][y].length && ){
-            if (ficha.x >= this.espacios[x][i].posX && this.espacios[x][y].posX <= ficha.x) {
+    isX(ficha, x){
+        return ((ficha-x) < 100);
+    }
 
+    checkMove(ficha) {
+        // debugger;
+        if((ficha.x >= 200 && ficha.x <= 800) && (ficha.y >= 200 && ficha.y <= 800)){
+            let x= 0;
+            let y= 0;
+            let foundX= false;
+            // let foundY= false; corta solo con el return 
+            let place= {
+                x: "",
+                y: ""
             }
-        }
-        for (let x = 0; x < this.espacios[x].length; x++) {
-            if (ficha.x >= this.espacios[x][i].posX && this.espacios[x][y].posX <= ficha.x) {
-                for (let y = 0; j < this.espacios[j][i].length; j++) {
-                    if(!this.espacios[j][i].ocupado){
-                        place.x= this.espacios[j][i].posX;
-                        place.y= this.espacios[j][i].posY;
+            while(x < 8 && y < 8 ){
+                if (!foundX && this.isX(ficha.x, this.espacios[y][x].posX)) {
+                    foundX= true;
+                }
+                if(!foundX){
+                    x++;
+                }
+                if(foundX){
+                    if(!this.espacios[y][x].ocupado){
+                        place.x= this.espacios[y][x].posX;
+                        place.y= this.espacios[y][x].posY;
+                        if(y == 7){
+                            this.espacios[y][x].ocupado = true;
+                        }
+                        y++;
                     }else{
+                        this.espacios[y-1][x].ocupado = true;
                         return place;
                     }
                 }
             }
+
+            // console.log(this.espacios[x][y].length)
+            // while(y < 8){
+            //     if(!this.espacios[x][y].ocupado){
+            //         place.x= this.espacios[x][y].posX;
+            //         place.y= this.espacios[x][y].posY;
+            //         y++;
+            //     }else{
+            //         return place;
+            //     }
+            // }
+            // for (let x = 0; x < this.espacios[x].length; x++) {
+            //     if (ficha.x >= this.espacios[x][i].posX && this.espacios[x][y].posX <= ficha.x) {
+            //         for (let y = 0; j < this.espacios[j][i].length; j++) {
+            //             if(!this.espacios[j][i].ocupado){
+            //                 place.x= this.espacios[j][i].posX;
+            //                 place.y= this.espacios[j][i].posY;
+            //             }else{
+            //                 return place;
+            //             }
+            //         }
+            //     }
+            // }
+            return place;
+        }else{
+            return null;
         }
-        return place;
     }   
 
     draw(){
         for (let ficha of this.team1) {
             ficha.draw();
         }
-        for (let ficha of this.team2) {
-            ficha.draw();
+        for (let ficha2 of this.team2) {
+            ficha2.draw();
         }
         this.espacios.map(y =>{
             y.map(x => {

@@ -12,14 +12,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
     //  ctx.fill();
     //  ctx.closePath();
 
-    let juego = new Juego(ctx, 2000, 1000);
+    let juego = new Juego(ctx, 1400, 1000);
 
     juego.draw();
 
     canvas.addEventListener('mousedown', (eMouseDown) =>{
         if(juego.checkHit(eMouseDown.offsetX, eMouseDown.offsetY)){
             canvas.addEventListener('mousemove', (eMouseMove) => {
-                console.log("dibuja")
                 juego.handleDrag(eMouseMove.offsetX, eMouseMove.offsetY);
             });
            
