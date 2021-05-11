@@ -65,6 +65,6 @@ class Juego{
         this.draw();
     }
     checkJuego(){
-        console.log("juego"+this.tablero.checkJuego(this.selectedChip));
+        alert("juego"+this.tablero.checkJuego(this.selectedChip));
     }
 }

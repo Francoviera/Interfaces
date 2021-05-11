@@ -60,9 +60,10 @@ class Tablero{
                     y++
                 }
             }
-
             if(foundX && foundY){
-                if(this.checkHorizontal(x,y, ficha) || this.checkVertical(x,y, ficha)){
+                if(this.checkHorizontal(x,y, ficha)) {
+                // || 
+                // this.checkVertical(x,y, ficha)){
                     return true;
                 }else{
                     return false;
@@ -72,29 +73,34 @@ class Tablero{
     }
 
     checkHorizontal(x, y, ficha){
-        let j = 3;
+        //TESTEADO 
+        let j = 4;
         let cantFichas= 0;
-        for (let i = -2; i < j; i++) {
-            if(i != 0 && x+i > 0 && x+i < 8){
+        for (let i = -3; i < j; i++) {
+            if(i != 0 && x+i >= 0 && x+i < 8){
                 if(this.espacios[y][x+i] && this.espacios[y][x+i].team == ficha.team){
                     cantFichas++;
+                }else{
+                    if(cantFichas < 3){
+                        cantFichas = 0;
+                    }
                 }
             }
         }
-        return cantFichas == 4;
+        return cantFichas >= 3;
     }
 
     checkVertical(x, y, ficha){
-        let j = 3;
+        let j = 4;
         let cantFichas= 0;
-        for (let i = -2; i < j; i++) {
-            if(i != 0 && x+i > 0 && y+i < 8){
+        for (let i = -3; i < j; i++) {
+            if(i != 0 && x+i >= 0 && y+i < 8){
                 if(this.espacios[y][x+i] && this.espacios[y+i][x].team == ficha.team){
                     cantFichas++;
                 }
             }
         }
-        return cantFichas == 4;
+        return cantFichas >= 3;
     }
 
     checkMove(ficha) {
