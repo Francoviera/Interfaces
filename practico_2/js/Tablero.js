@@ -40,7 +40,7 @@ class Tablero{
     }
 
     checkJuego(ficha){
-        // debugger;
+        debugger;
         let x= 0;
         let y= 0;
         let foundX= false;
@@ -61,9 +61,9 @@ class Tablero{
                 }
             }
             if(foundX && foundY){
-                if(this.checkHorizontal(x,y, ficha)) {
+                if(this.checkVertical(x,y, ficha)) {
                 // || 
-                // this.checkVertical(x,y, ficha)){
+                // this.checkHorizontal(x,y, ficha)){
                     return true;
                 }else{
                     return false;
@@ -93,10 +93,14 @@ class Tablero{
     checkVertical(x, y, ficha){
         let j = 4;
         let cantFichas= 0;
-        for (let i = -3; i < j; i++) {
-            if(i != 0 && x+i >= 0 && y+i < 8){
-                if(this.espacios[y][x+i] && this.espacios[y+i][x].team == ficha.team){
+        for (let i = 1; i < j; i++) {
+            if(i != 0 && y+i >= 0 && y+i < 8){
+                if(this.espacios[y+i][x] && this.espacios[y+i][x].team == ficha.team){
                     cantFichas++;
+                }else{
+                    if(cantFichas < 3){
+                        cantFichas = 0;
+                    }
                 }
             }
         }
@@ -130,6 +134,7 @@ class Tablero{
                         y++;
                     }else{
                         this.espacios[y-1][x].ocupado = true;
+                        this.espacios[y][x].team = ficha.team;
                         return place;
                     }
                 }
