@@ -13,6 +13,26 @@ class Juego{
             x: null,
             y: null
         }
+        this.draw();
+        this.iniciarTemporizador();
+    }
+
+    iniciarTemporizador(){
+        let i= 0;
+        let temp= document.getElementById("temporizador");
+        setInterval(function(){
+            temp.innerHTML= i;
+            i++;
+            if(i == 10){
+                this.team1 = !this.team1;
+                if(this.team1){
+                    this.turno.innerHTML= "Rojas";
+                }else{
+                    this.turno.innerHTML= "Azules";
+                }
+                i= 0;
+            }
+        },1000);
     }
 
     draw(){
@@ -51,8 +71,14 @@ class Juego{
     }
     checkMove(){
         console.log(this.selectedChip)
+        let turno= "team2";
+        if(this.team1){
+            turno = "team1";
+        }
         let place= this.tablero.checkMove(this.selectedChip);
-        if(place == null){
+        console.log(this.selectedChip)
+        console.log(turno)
+        if(place == null || (this.selectedChip.team != turno )){
             console.log("place null")
             this.selectedChip.move(this.posInicial.x, this.posInicial.y);
         }else{

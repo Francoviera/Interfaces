@@ -20,7 +20,7 @@ class Tablero{
             imgFichaAzul.src = './images/fichaAzul.png';
         
             this.team1.push(new Ficha(100,100+(i*20),40, this.ctx, "red", "team1", imgFichaRoja));
-            this.team2.push(new Ficha(1100,100+(i*20),40, this.ctx, "blue", "team2", imgFichaAzul));
+            this.team2.push(new Ficha((this.columnas*100)+300,100+(i*20),40, this.ctx, "blue", "team2", imgFichaAzul));
         }
         
     }
@@ -144,7 +144,7 @@ class Tablero{
     }
 
     checkMove(ficha) {
-        if((ficha.x >= 200 && ficha.x <= 1000) && (ficha.y >= 100 && ficha.y <= 1000)){
+        if((ficha.x >= 200 && ficha.x <= (this.columnas*100)) && (ficha.y >= 100 && ficha.y <= (this.filas*100))){
             let x= 0;
             let y= 0;
             let foundX= false;
