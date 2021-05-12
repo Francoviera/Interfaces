@@ -1,49 +1,50 @@
 document.addEventListener("DOMContentLoaded", ()=>{
-    // let width= 500;
-    // let heigth= 600;
 
     let canvas= document.getElementById("canvas");
-    let turno= document.getElementById("turno");
-    // canvas.width= width;
-    // canvas.heigth= heigth;
-
     let ctx= canvas.getContext('2d');
-    //  ctx.beginPath();
-    //  ctx.arc(100,100,50,0,100);
-    //  ctx.fill();
-    //  ctx.closePath();
 
-    let juego = new Juego(ctx, 1400, 1000, turno);
+    let turno= document.getElementById("turno");
+    let btnCargar= document.getElementById("btnCargar");
 
-    juego.draw();
 
-    canvas.addEventListener('mousedown', (eMouseDown) =>{
-        if(juego.checkHit(eMouseDown.offsetX, eMouseDown.offsetY)){
-            canvas.addEventListener('mousemove', (eMouseMove) => {
-                juego.handleDrag(eMouseMove.offsetX, eMouseMove.offsetY);
-            });
-           
+    
+    btnCargar.addEventListener("click", (e) => {
+        e.preventDefault();
+        let team1= document.getElementById("team1").value;
+        let team2= document.getElementById("team2").value;
+        let filas= document.getElementById("filas").value;
+        let columnas= document.getElementById("columnas").value;
+        if(team1 && team2 && filas && columnas){
+            if(filas > 3 && columnas > 3){
+                document.getElementById("formulario").classList.toggle("ocultar");
+                document.getElementById("juego").classList.toggle("ocultar");
+                
+                let juego = new Juego(ctx, 1400, 1000, turno, team1, team2, filas, columnas);
+                juego.draw();
+                
+                canvas.addEventListener('mousedown', (eMouseDown) =>{
+                    if(juego.checkHit(eMouseDown.offsetX, eMouseDown.offsetY)){
+                        canvas.addEventListener('mousemove', (eMouseMove) => {
+                            juego.handleDrag(eMouseMove.offsetX, eMouseMove.offsetY);
+                        });
+                        
+                    }
+                })
+                canvas.addEventListener('mouseup', (eMouseUp) => {
+                    canvas.removeEventListener('mousemove', juego.handleDrag);
+                    juego.stopDragging();
+                });
+                document.getElementById("reiniciar").addEventListener("click", () =>{
+                    document.getElementById("ganador").innerHTML= "";
+                    juego = new Juego(ctx, 1400, 1000, turno, team1, team2, filas, columnas);
+                    juego.draw();
+                });
+            }else{
+                alert("Ingrese un valor de filas y columnas mayor a 4");
+            }
+        }else{
+            alert("Complete todos los campos");
         }
-    })
-    canvas.addEventListener('mouseup', (eMouseUp) => {
-        canvas.removeEventListener('mousemove', juego.handleDrag);
-        juego.stopDragging();
-    })
+    });
 
-    //  canvas.addEventListener("click", (event) => {
-    //      console.log(event)
-    //     let radio= Math.sqrt(((event.offsetX -100) ** 2) + ((event.offsetY - 100) ** 2));
-    //     if(radio < 50){
-    //         console.log("adentro")
-    //         canvas.addEventListener('mousedown', () =>{
-    //             canvas.addEventListener('mouseup', (event) =>{
-    //                 ctx.clearRect(0,0,canvas.width,canvas.height)
-    //                 ctx.beginPath();
-    //                 ctx.arc(event.offsetX,event.offsetY,50,0,100);
-    //                 ctx.fill();
-    //                 ctx.closePath();
-    //             });
-    //         });
-    //     }
-    //  });
 });

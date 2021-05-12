@@ -1,26 +1,28 @@
-class Figura{
-    constructor(x,y,radio, ctx, color, team){
+class Ficha{
+    constructor(x,y,radio, ctx, color, team, imgFicha){
         this.x= x;
         this.y= y;
         this.radio= radio;
         this.ctx= ctx;
         this.color= color;
         this.team= team;
+        // this.draw();
+        this.imgFicha= imgFicha;
     }
 
     draw(){
+        
         this.ctx.beginPath();
+        // this.ctx.fillStyle = this.color;
         this.ctx.arc(this.x,this.y,this.radio,0, 2 * Math.PI);
-        this.ctx.fillStyle = this.color;
-        this.ctx.fill();
-        this.ctx.moveTo(110,75);
-        this.ctx.closePath();
+        this.ctx.strokeStyle = 'black';
         this.ctx.stroke();
+        this.ctx.fill();
+        this.ctx.closePath();
+        // this.ctx.moveTo(110,75);
+        this.ctx.drawImage(this.imgFicha, this.x - this.radio, this.y - this.radio, 2*this.radio, 2*this.radio);
     }
 
-    // setFill(radio){
-    //     this.radio= radio;
-    // }
     getPosition(){
         return{
             x: this.x,

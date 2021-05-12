@@ -1,12 +1,14 @@
 class Juego{
-    constructor(ctx, width, heigth, turno){
+    constructor(ctx, width, heigth, turno, team1, team2, filas, columnas){
         this.ctx= ctx;
         this.heigth= heigth;
         this.width= width;
         this.dibujando= false;
         this.team1= true;
         this.turno= turno;
-        this.tablero= new Tablero(ctx);
+        this.nameTeam1= team1;
+        this.nameTeam2= team2;
+        this.tablero= new Tablero(ctx, filas,columnas);
         this.posInicial= {
             x: null,
             y: null
@@ -48,6 +50,7 @@ class Juego{
         this.dibujando = false;
     }
     checkMove(){
+        console.log(this.selectedChip)
         let place= this.tablero.checkMove(this.selectedChip);
         if(place == null){
             console.log("place null")
@@ -56,15 +59,27 @@ class Juego{
             this.selectedChip.move(place.x + 45, place.y + 45);
             this.team1= !this.team1;
             if(this.team1){
-                this.turno.innerHTML= "Team 1";
+                this.turno.innerHTML= "Rojas";
             }else{
-                this.turno.innerHTML= "Team 2";
+                this.turno.innerHTML= "Azules";
             }
         }
         this.posInicial= {x: null, y: null}
         this.draw();
     }
     checkJuego(){
-        alert("juego"+this.tablero.checkJuego(this.selectedChip));
+        let resultado= this.tablero.checkJuego(this.selectedChip);
+        let msj= "";
+
+        if(resultado != null){
+            // alert("Has Ganado!! " + resultado);
+            if(resultado == "team1"){
+                msj= "Has Ganado!! "+ this.nameTeam1;
+            }else{
+                msj= "Has Ganado!! "+ this.nameTeam2;
+            }
+                document.getElementById("ganador").innerHTML=msj;
+
+        }
     }
 }
