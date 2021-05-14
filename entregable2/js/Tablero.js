@@ -148,7 +148,7 @@ class Tablero{
     }
 
     checkMove(ficha) {
-        if(ficha.x >= 200 && ficha.x <= this.columnas+1*100 && ficha.y >= 100 && ficha.y<= this.filas+1*100){
+        if(ficha.x >= 200 && ficha.x <= this.columnas+1*100 && ficha.y >= 100 && ficha.y<= this.filas*100){
             let x= 0;
             let y= 0;
             let foundX= false;
@@ -173,8 +173,10 @@ class Tablero{
                         }
                         y++;
                     }else{
-                        this.espacios[y-1][x].ocupado = true;
-                        this.espacios[y-1][x].team = ficha.team;
+                        if(place.x != "" && place.y != ""){
+                            this.espacios[y-1][x].ocupado = true;
+                            this.espacios[y-1][x].team = ficha.team;
+                        }
                         return place;
                     }
                 }

@@ -75,7 +75,8 @@ class Juego{
         }
         this.dibujando = false;
     }
-    checkMove(){        
+    checkMove(){   
+        debugger;     
         if(!this.selectedChip.enUso ){
             let place= this.tablero.checkMove(this.selectedChip);
 
