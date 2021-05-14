@@ -15,7 +15,7 @@ class Juego{
             y: null
         }
         this.draw();
-        this.iniciarTemporizador();
+        // this.iniciarTemporizador();
     }
 
     iniciarTemporizador(){
