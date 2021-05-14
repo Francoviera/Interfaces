@@ -1,0 +1,16 @@
+.ocultar{
+    display: none;
+}
+.formulario{
+    margin-top: 15%;
+    margin-left: 15%;
+
+}
+#reiniciar{
+    height: 15%;
+    width: 15%;
+}
+body{
+    background-image: url("../images/fondo.jpg");
+    background-size: 100% 100%;
+}
