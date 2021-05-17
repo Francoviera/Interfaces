@@ -9,10 +9,17 @@
     <title>Entregable</title>
 </head>
 <body>
+  <div class="header">
+    <nav class="navbar navbar-dark bg-dark">
+      <center>
+        <a class="navbar-brand" href="#" >  Interfaces Tp Entregable 1 - alumno: Franco viera</a>
+      </center>
+    </nav>
+  </div>
   <div class="container">
     <div>
       <h1>Paint</h1>
-      <section >
+      <section class="navbarHerramientas">
         Color de linea: <input type="color" onchange="colorLinea(this)">
         Ancho de linea: <input type="range" onchange="anchoLinea(this)" max="200" min="1" value="1"><span id="valor">0</span>
         <input class="btn btn-warning" type="button" value="Limpiar" onclick="limpiar()">
