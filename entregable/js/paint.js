@@ -36,13 +36,14 @@ let canvasPaint = document.getElementById('canvasPaint');
        }
     }
     let btnBorrar= document.getElementById('borrarActive');
+    let btnDibujar= document.getElementById('dibujarActive');
+
     btnBorrar.addEventListener('click',() => {
-        borrado= !borrado
-        if(borrado){
-            btnBorrar.value="Dibujar";
-        }else {
-            btnBorrar.value="Borrar";
-        }
+        borrado= true;
+    });
+
+    btnDibujar.addEventListener('click',() => {
+        borrado= false;
     });
 
     canvasPaint.addEventListener('mousemove',dibujar);

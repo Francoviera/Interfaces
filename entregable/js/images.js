@@ -1,17 +1,17 @@
 
-let canvas2 = document.getElementById("canvasPaint");
-let ctx2 = canvas2.getContext('2d');
+const canvas2 = document.getElementById("canvasPaint");
+const ctx2 = canvas2.getContext('2d');
 
-// let width = 640;
-// let height = 480;
+const canvas = document.getElementById("canvasImage");
+const ctx = canvas.getContext('2d');
 
 let buttonsBlackAndWithe= document.getElementById("aBlancoNegro");
 let buttonInvertirColores= document.getElementById("invertirColores");
 let buttonVolverCambios= document.getElementById("buttonVolverCambios");
 let btnBrillo= document.getElementById("brillo");
 
-buttonsBlackAndWithe.addEventListener("click", () => cambiarBlancoNegro(ctx2));
-buttonInvertirColores.addEventListener("click", () => invertirColores(ctx2));
+buttonsBlackAndWithe.addEventListener("click", () => cambiarBlancoNegro());
+buttonInvertirColores.addEventListener("click", () => invertirColores());
 buttonVolverCambios.addEventListener("click", () => invertirCambios(ctx2));
 btnBrillo.addEventListener("click", () => brillo());
 
@@ -26,9 +26,9 @@ inputImage.addEventListener("change", () =>{
         let image= new Image();
         image.src= reader.result;
         image.onload= () => {
-            ctx2.drawImage(image,0,0,image.width,image.height);
+            ctx.drawImage(image,0,0,canvas.width,canvas.height);
             // ctx2.putImageData(ctx2.getImageData(),0,0,canvas2.width,canvas2.height);
-            imageData= ctx2.getImageData(0,0, 400, 600);  //Guardo la data de la foto original 
+            imageData= ctx.getImageData(0,0, canvas.width, canvas.height);  //Guardo la data de la foto original 
         }
     }
     reader.readAsDataURL(inputImage.files[0]);
@@ -45,7 +45,7 @@ document.getElementById("deleteImage").addEventListener("click", () => {
 
 document.getElementById("sepia").addEventListener("click", () =>{
     invertirCambios();
-    let datosImg= ctx2.getImageData(0,0, 400, 600);
+    let datosImg= ctx.getImageData(0,0, canvas.width, canvas.height);
     let pixels= datosImg.data;
     let numPixels = imageData.width * imageData.height; //saco la cantidad de elementos de la matriz (pixels)
     for ( var i = 0; i < numPixels; i++ ) {
@@ -62,12 +62,12 @@ document.getElementById("sepia").addEventListener("click", () =>{
         pixels[ i * 4 + 2 ] = ( r * .272 ) + ( g *.534 ) + ( b * .131 );
     }
  
-    ctx2.putImageData( datosImg, 0, 0 );
+    ctx.putImageData( datosImg, 0, 0 );
 });
 
 document.getElementById("saturacion").addEventListener("click", () =>{
     invertirCambios();
-    let datosImg= ctx2.getImageData(0,0, 400, 600);
+    let datosImg= ctx.getImageData(0,0, canvas.width, canvas.height);
     let pixels= datosImg.data;
     let numPixels = imageData.width * imageData.height; //saco la cantidad de elementos de la matriz (pixels)
     console.log(numPixels)
@@ -86,7 +86,7 @@ document.getElementById("saturacion").addEventListener("click", () =>{
         datosImg.data[i * 4 + 2] = rgb[2];
 
     }
-    ctx2.putImageData( datosImg, 0, 0 );
+    ctx.putImageData( datosImg, 0, 0 );
 
     //ESTO ES CONTRASTE
     // let imageData = ctx2.getImageData(0,0, 400, 600);
@@ -111,7 +111,7 @@ document.getElementById("saturacion").addEventListener("click", () =>{
 
 document.getElementById("saveImage").addEventListener("click", () =>{
     var link = window.document.createElement( 'a' ),
-        url = canvas2.toDataURL(),
+        url = canvas.toDataURL(),
         filename = 'screenshot.jpg';
  
     link.setAttribute( 'href', url );
@@ -125,8 +125,8 @@ document.getElementById("saveImage").addEventListener("click", () =>{
 
 
 const myDrawImage = (imageData) => {
-        ctx2.drawImage(imageData, 0, 0);
-        let datos= ctx2.getImageData(0,0, 400, 600);
+        ctx.drawImage(imageData, 0, 0);
+        let datos= ctx2.getImageData(0,0, canvas.width, canvas.height);
         // for (let index = 0; index < 600*400; index++) {
         //     datos.data[index * 4]= 4;
         // }
@@ -136,7 +136,9 @@ const myDrawImage = (imageData) => {
     }
 
 function invertirCambios(){
-    ctx2.putImageData(imageData,0,0);
+    //esta funcion llo que hace es sacar los cambios que realizo el usuario y 
+    //volver la imagen en la forma original, se estaria usando para cuando se cambia de un filtro a otro
+    ctx.putImageData(imageData,0,0);
 }
 
 function rgbToHsl(r, g, b) {
@@ -193,7 +195,7 @@ function hslToRgb(h, s, l) {
 
 document.getElementById("blur").addEventListener("click", () =>{
     invertirCambios();
-    let image = ctx2.getImageData(0, 0, imageData.width, imageData.height);
+    let image = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let matriz = [[1, 1, 1],[1, 1, 1],[1, 1, 1]];
     for (let x = 0; x < imageData.width; x++) {
         for (let y = 0; y < imageData.height; y++) {
@@ -201,12 +203,12 @@ document.getElementById("blur").addEventListener("click", () =>{
         }
     }
 
-    ctx2.putImageData(image, 0, 0);
+    ctx.putImageData(image, 0, 0);
 });
 
 document.getElementById("deteccionBordes").addEventListener("click", () =>{
     invertirCambios();
-    let image = ctx2.getImageData(0, 0, imageData.width, imageData.height);
+    let image = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let matriz = [[1, 1, 1],[1, 0.2, 1],[1, -1, -1]];
     // let matriz = [[1, 1, 1],[1, 0, 1],[1, -1, -1]];
     // let matriz = [[0, 1, 0],[1, -4, 1],[0, 1, 0]];
@@ -216,7 +218,7 @@ document.getElementById("deteccionBordes").addEventListener("click", () =>{
         }
     }
 
-    ctx2.putImageData(image, 0, 0);
+    ctx.putImageData(image, 0, 0);
 });
 
 function matrizOfPixel (image, x, y, matriz) {
@@ -261,9 +263,9 @@ function matrizOfPixel (image, x, y, matriz) {
 
 
 
-function invertirColores(ctx){
+function invertirColores(){
     invertirCambios();
-    let datosImg= ctx.getImageData(0,0, 400, 600);
+    let datosImg= ctx.getImageData(0,0, canvas.width, canvas.height);
     let data= datosImg.data;
     for (let index = 0; index < data.length; index+=4) {
         datosImg.data[index] = 255 - datosImg.data[index];
@@ -276,7 +278,7 @@ function invertirColores(ctx){
 
 function brillo(){
     // invertirCambios();
-    let data = ctx2.getImageData(0, 0, imageData.width, imageData.height);
+    let data = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let pixels = data.data;
     console.log(pixels)
 
@@ -291,12 +293,12 @@ function brillo(){
         pixels[i * 4 + 2] = b + 25;
         //va aumentado hasta que llega al color blanco
     }
-    ctx2.putImageData(data, 0, 0)
+    ctx.putImageData(data, 0, 0)
 }
 
-function cambiarBlancoNegro(ctx){
+function cambiarBlancoNegro(){
     invertirCambios();
-    let datosImg= ctx.getImageData(0,0, 400, 600);
+    let datosImg= ctx.getImageData(0,0, canvas.width, canvas.height);
     let data= datosImg.data;
     for (let index = 0; index < data.length; index+=4) {
         let aux= 0.43 * datosImg.data[index] + 0.5 * datosImg.data[index+1] + 0.16 * datosImg.data[index+2]
