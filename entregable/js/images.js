@@ -26,14 +26,28 @@ inputImage.addEventListener("change", () =>{
         let image= new Image();
         image.src= reader.result;
         image.onload= () => {
-            ctx2.drawImage(image,0,0,image.width,image.height);
+            let escala= getEscalaImg(img);
+            let x= (canvas2.width/2) - (image.width/2) * escala;
+            let y= (canvas2.height/2) - (image.heigth/2) * escala;
+            ctx2.drawImage(image,x,y,image.width*escala,image.height*escala);
             // ctx2.putImageData(ctx2.getImageData(),0,0,canvas2.width,canvas2.height);
-            imageData= ctx2.getImageData(0,0, 400, 600);  //Guardo la data de la foto original 
+            // imageData= ctx2.getImageData(0,0, 400, 600);  //Guardo la data de la foto original 
+            ctx2.putImageData(image,0, 0);
         }
     }
     reader.readAsDataURL(inputImage.files[0]);
 
 });
+
+function getEscalaImg(img){
+    let width= img.width/canvas2.width;
+    let heigth= img.heigth/canvas2.heigth;
+
+    if(width < heigth)
+        return width;
+    else
+        return heigth;
+}
 
 // borrar imagen inputImage.files= [];
 
