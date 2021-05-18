@@ -38,17 +38,27 @@ document.addEventListener("DOMContentLoaded", function (){
         }, 250);
     }
 
-    function fadeOutEffect() {
-        let fadeEffect = setInterval(function () {
-            console.log( page.style.opacity)
-            // if (!page.style.opacity) {
-            //     page.style.opacity = 0;
-            // }
-            if (page.style.opacity < 1) {
-                page.style.opacity ++;
-            } else {
-                clearInterval(fadeEffect);
-            }
-        }, 200);
+    const topDate = new Date('June 31, 2021 00:00:00 GMT-03:00');
+
+    const updateClock = (date) => {
+        let countdown_seconds= document.querySelector(".countdown_seconds");
+        let countdown_minutes= document.querySelector(".countdown_minutes");
+        let countdown_hours= document.querySelector(".countdown_hours");
+        let countdown_days= document.querySelector(".countdown_days");
+
+        let end = date.getTime();
+        let now = Date.now();
+        let diff = end - now;
+        countdown_days.innerHTML= Math.floor(diff / 86400000);
+        diff = diff % 86400000
+        countdown_hours.innerHTML= Math.floor(diff / 3600000);
+        diff = diff % 3600000;
+        countdown_minutes.innerHTML= Math.floor(diff / 60000);
+        diff = diff % 60000;
+        countdown_seconds.innerHTML= Math.floor(diff / 1000);
     }
+
+    setInterval(() => {
+        updateClock(topDate);
+    }, 1000); 
 });

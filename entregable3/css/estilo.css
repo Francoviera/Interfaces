@@ -113,3 +113,54 @@
 		border-left-color: transparent;
 	}
 }
+
+.countdown__timer {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.countdown__item {
+	display: inline-block;
+	margin-right: 80px;
+	margin-bottom: 30px;
+}
+.countdown__item {
+	display: inline-block;
+	margin-right: 80px;
+	margin-bottom: 30px;
+}
+.countdown__item span {
+	font-size: 90px;
+	font-family: "Rajdhani", sans-serif;
+	font-weight: 700;
+	color: #ffffff;
+	display: block;
+	line-height: 100px;
+}
+
+.countdown__item p {
+	color: #ffffff;
+	letter-spacing: 4px;
+	text-transform: uppercase;
+	margin-bottom: 0;
+}
+.countdown__text {
+	text-align: center;
+	margin-bottom: 36px;
+}
+
+.countdown__text h1 {
+	font-size: 90px;
+	color: #ffffff;
+	font-family: "Rockville Solid Regular";
+	color: #ffffff;
+	margin-bottom: 25px;
+}
+
+.countdown__text h4 {
+	font-size: 26px;
+	font-family: "Now Regular";
+	color: #ffffff;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+}
