@@ -2,7 +2,7 @@
     display: none;
 }
 .hide{
-    animation: fadeOut 2s;
+    animation: fadeOut 1s;
 }
 .show{
     animation: fadein 1s;
