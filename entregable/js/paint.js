@@ -9,8 +9,8 @@ let canvasPaint = document.getElementById('canvasPaint');
     let trazo=false;
 
     function dibujar(evento){
-        x=evento.clientX-canvasPaint.offsetLeft;
-        y=evento.clientY-canvasPaint.offsetTop;
+        x=evento.clientX-canvasPaint.offsetLeft; //obtengo x sobre el canvas
+        y=evento.clientY-canvasPaint.offsetTop;  //obtengo y sobre el canvas
 
         if(!borrado && trazo){
             ctxPaint.lineTo(x,y);

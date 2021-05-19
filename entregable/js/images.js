@@ -1,7 +1,4 @@
 
-const canvas2 = document.getElementById("canvasPaint");
-const ctx2 = canvas2.getContext('2d');
-
 const canvas = document.getElementById("canvasImage");
 const ctx = canvas.getContext('2d');
 
@@ -12,7 +9,7 @@ let btnBrillo= document.getElementById("brillo");
 
 buttonsBlackAndWithe.addEventListener("click", () => cambiarBlancoNegro());
 buttonInvertirColores.addEventListener("click", () => invertirColores());
-buttonVolverCambios.addEventListener("click", () => invertirCambios(ctx2));
+buttonVolverCambios.addEventListener("click", () => invertirCambios());
 btnBrillo.addEventListener("click", () => brillo());
 
 
@@ -26,7 +23,7 @@ inputImage.addEventListener("change", () =>{
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         let image= new Image();
         image.src= reader.result;
-        imgGuardada= image;
+        imgGuardada= image; //guardo la imagen para poder invertir los cambios despues
         image.onload= () => {
             dibujarImagen(image);
             imageData= ctx.getImageData(0,0, image.width, image.height);  //Guardo la data de la foto original 
@@ -34,16 +31,17 @@ inputImage.addEventListener("change", () =>{
         }
     }
     reader.readAsDataURL(inputImage.files[0]);
-
+    inputImage.value = "";
 });
 
 function dibujarImagen(image){
     let escala= getEscalaImg(image);
-    let x= (canvas.width/2) - (image.width/2) * escala;
-    let y= (canvas.height/2) - (image.height/2) * escala;
-    ctx.drawImage(image,x,y,image.width*escala,image.height*escala);
+    //cuando dibujamos la imagen multiplicamos el ancho y el alto con la escala obtenida anteriormente
+    ctx.drawImage(image,0,0,image.width*escala,image.height*escala);
 }
 
+
+//con esta funcion obtenemos la escala de la imagen elijiendo el menor entre el ancho y la altura de la imagen y el canvas
 function getEscalaImg(img){
     let width= canvas.width/img.width;
     let heigth= canvas.height/img.height;
@@ -63,7 +61,6 @@ document.getElementById("deleteImage").addEventListener("click", () => {
 
 
 document.getElementById("sepia").addEventListener("click", () =>{
-    // invertirCambios();
     let datosImg= ctx.getImageData(0,0, canvas.width, canvas.height);
     let pixels= datosImg.data;
     let numPixels = datosImg.width * datosImg.height; //saco la cantidad de elementos de la matriz (pixels)
@@ -85,7 +82,6 @@ document.getElementById("sepia").addEventListener("click", () =>{
 });
 
 document.getElementById("saturacion").addEventListener("click", () =>{
-    // invertirCambios();
     let datosImg= ctx.getImageData(0,0, canvas.width, canvas.height);
     let pixels= datosImg.data;
     let numPixels = datosImg.width * datosImg.height; //saco la cantidad de elementos de la matriz (pixels)
@@ -139,7 +135,7 @@ document.getElementById("saveImage").addEventListener("click", () =>{
     window.document.body.appendChild( link );
     link.click();
     window.document.body.removeChild( link );
-    inputImage.value= "";
+    inputImage.value= ""; //seteamos el input de la imagen en vacio para poder cargar cualquier imagen cuando se desee
 });
 
 
@@ -156,14 +152,14 @@ const myDrawImage = (imageData) => {
     }
 
 function invertirCambios(){
-    //esta funcion llo que hace es sacar los cambios que realizo el usuario y 
+    //esta funcion lo que hace es sacar los cambios que realizo el usuario y 
     //volver la imagen en la forma original, se guarda la imagen orginal y se limpia y se redibuja la imagen en el canvas
     if(imgGuardada != null){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         let image= new Image();
         image.src= imgGuardada.src;
         image.onload= () => {
-            dibujarImagen(image);
+            dibujarImagen(image); //dibuja la imagen mantieniendo el aspect ratio 
             imageData= ctx.getImageData(0,0, image.width, image.height);  //Guardo la data de la foto original 
             ctx.putImageData(imageData,0, 0);
         }
@@ -225,7 +221,6 @@ function hslToRgb(h, s, l) {
 }
 
 document.getElementById("blur").addEventListener("click", () =>{
-    // invertirCambios();
     let image = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let matriz = [[1, 1, 1],[1, 1, 1],[1, 1, 1]];
     for (let x = 0; x < image.width; x++) {
@@ -238,7 +233,6 @@ document.getElementById("blur").addEventListener("click", () =>{
 });
 
 document.getElementById("deteccionBordes").addEventListener("click", () =>{
-    invertirCambios();
     let image = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let matriz = [[1, 1, 1],[1, 0.2, 1],[1, -1, -1]];
     // let matriz = [[1, 1, 1],[1, 0, 1],[1, -1, -1]];
@@ -295,7 +289,6 @@ function matrizOfPixel (image, x, y, matriz) {
 
 
 function invertirColores(){
-    // invertirCambios();
     let datosImg= ctx.getImageData(0,0, canvas.width, canvas.height);
     let data= datosImg.data;
     for (let index = 0; index < data.length; index+=4) {
@@ -308,10 +301,8 @@ function invertirColores(){
 }
 
 function brillo(){
-    // invertirCambios();
     let image = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let pixels = image.data;
-    console.log(pixels)
 
     for (let i = 0; i < image.width * image.height; i++) {
         let r = pixels[i * 4];
@@ -328,7 +319,6 @@ function brillo(){
 }
 
 function cambiarBlancoNegro(){
-    // invertirCambios();
     let datosImg= ctx.getImageData(0,0, canvas.width, canvas.height);
     let data= datosImg.data;
     for (let index = 0; index < data.length; index+=4) {
@@ -340,10 +330,3 @@ function cambiarBlancoNegro(){
     }
     ctx.putImageData(datosImg,0,0);
 }
-// for (let x = 0; x < width; x++) {
-//     for (let y = 0; y < height; y++) {
-//         dragImgDegrado(imageData,x,y,255+x,0+x,0+x,255+x);
-//     }
-
-//  }
-//  ctx3.putImageData(imageData, 50, 50);
