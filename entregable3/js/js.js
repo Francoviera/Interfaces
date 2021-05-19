@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function (){
     let preloder= document.querySelector("#preloder");
     let header= document.querySelector(".header");
     let footer= document.querySelector(".footer");
+    let countdown= document.querySelector(".countdown");
     let page= document.querySelector(".page");
 
 
@@ -22,15 +23,24 @@ document.addEventListener("DOMContentLoaded", function (){
             percentCount+= 7;
             if(i === 3){
                 loading= false;
-                // header.classList.toggle("ocultar");
-                // footer.classList.toggle("ocultar");
-                // fadeOutEffect();
+
+                //se oculta el preloader
                 preloder.classList.toggle("hide");
+
+                //se espera un segundo y se hace un fadeIn al contenido de la pagina
                 setTimeout(function(){
                     preloder.classList.toggle("ocultar");
                     page.classList.toggle("ocultar");
-                    page.classList.toggle("show");
+                    page.classList.toggle("show");  
                 }, 1000);
+
+                //esto vendria a ser el desplazamiento de countdown hacia arriba cuando se muestra la pagina
+                setTimeout(function(){
+                    countdown.classList.toggle("fadeInUp");
+                    countdown.classList.toggle("ftco-animate");
+                    countdown.classList.toggle("ftco-animated");
+                }, 1050);
+                //se frena el interval
                 clearInterval(interval);
             }
             percent.innerHTML= percentCount + "%";
