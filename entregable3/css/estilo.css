@@ -4,9 +4,32 @@
 .loadingDivText{
     margin-top: 20%;
 }
-.container{
-    background-image: url("../images/fondo.jpg");
-    background-size: cover;
+.imgRick{
+	height: 45%;
+	width: 45%;
+	float: left;
+	margin-top: 10%;
+
+}
+.imgNegan{
+	float: right;
+	height: 45%;
+	width: 45%;
+	margin-top: 10%;
+}
+.imgSangre{
+	position: absolute;
+	float: left;
+	/* height: 45%;
+	width: 100%; */
+	margin-top: 10%;
+	opacity: 0;
+}
+.fondoCountdown{
+    background-image: url("../images/fondo3.webp");
+	background-repeat: no-repeat;
+    background-size: 100% 71%;
+	position: inherit;
 }
 
 .countdown__timer {
@@ -40,6 +63,7 @@
 	margin-bottom: 0;
 }
 .countdown__text {
+	margin-top: 5%;
 	text-align: center;
 	margin-bottom: 36px;
 }

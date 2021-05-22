@@ -39,6 +39,14 @@ document.addEventListener("DOMContentLoaded", function (){
                     countdown.classList.toggle("fadeInUp");
                     countdown.classList.toggle("ftco-animate");
                     countdown.classList.toggle("ftco-animated");
+                    document.querySelector(".imgRick").classList.toggle("reducirImg");
+                    document.querySelector(".imgNegan").classList.toggle("reducirImg");
+                    document.querySelector(".imgSangre").classList.toggle("aumentarImg");
+                    setTimeout(function(){
+                        document.querySelector(".imgSangre").classList.toggle("hide");
+                    }, 1000);
+                    // reduceImageCountdown();
+
                 }, 1050);
                 //se frena el interval
                 clearInterval(interval);
@@ -67,6 +75,26 @@ document.addEventListener("DOMContentLoaded", function (){
         diff = diff % 60000;
         countdown_seconds.innerHTML= Math.floor(diff / 1000);
     }
+
+    // const  reduceImageCountdown= () => {
+    //     let imgRick= document.querySelector(".imgRick");
+    //     let imgNegan= document.querySelector(".imgNegan");
+    //     let count= 45;
+
+    //     let interval= setInterval(function(){
+    //         console.log("count", count);
+    //         count--;
+    //         if(count == 25){
+    //             clearInterval(interval);
+    //         }
+    //         imgNegan.style.width= `${count}%`;
+    //         imgNegan.style.height= `${count}%`;
+    //         imgRick.style.width= `${count}%`;
+    //         imgRick.style.height= `${count}%`;
+
+    //     }, 50);
+        
+    // }
 
     setInterval(() => {
         updateClock(topDate);

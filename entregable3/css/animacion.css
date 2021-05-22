@@ -84,6 +84,56 @@
 .show{
     animation: fadein 1s;
 }
+.aumentarImg {
+	animation: aumentar 1s;
+	animation-fill-mode: forwards;
+
+}
+.reducirImg {
+	animation: reducir 1s;
+	animation-fill-mode: forwards;
+
+}
+@keyframes aumentar{
+    0%{
+		width: 10%;
+		height: 10%;
+		margin-top: 10%;
+		margin-left: 0%;
+		opacity: 0;
+	}
+    100%{
+		width: 80%;
+		height: 80%;
+		margin-top: 15%;
+		margin-left: 10%;
+		opacity: 1;
+
+	}
+}
+
+.reducir{
+    animation-name: reducir;
+
+}
+@keyframes reducir{
+    0%{
+		/* width: 45%;
+		height: 45%; */
+		width: 25%;
+		height: 30%;
+		margin-top: 10%;
+	}
+    100%{
+		/* width: 25%;
+		height: 30%; */
+		width: 45%;
+		height: 45%;
+		margin-top: 15%;
+
+	}
+}
+
 .fadeOut{
     animation-name:fadeOut
 }
@@ -118,10 +168,10 @@
 	from {
 	  opacity: 0;
 	  visibility: hidden;
-	  /*-webkit-transform: translate3d(0, 100%, 0);
-	  transform: translate3d(0, 100%, 0);*/
-	  -webkit-transform: translate3d(0, 40px, 0);
-	  transform: translate3d(0, 40px, 0);
+	  -webkit-transform: translate3d(70%, 0, 0);
+	  transform: translate3d(50%, 0, 0);
+	  /* -webkit-transform: translate3d(0, 0, 40px);
+	  transform: translate3d(0, 0, 40px); */
 	}
   
 	to {
@@ -136,10 +186,10 @@
 	from {
 	  opacity: 0;
 	  visibility: hidden;
-	  /*-webkit-transform: translate3d(0, 100%, 0);
-	  transform: translate3d(0, 100%, 0);*/
-	  -webkit-transform: translate3d(0, 40px, 0);
-	  transform: translate3d(0, 40px, 0);
+	  -webkit-transform: translate3d(70%, 0, 0);
+	  transform: translate3d(50%, 0, 0);
+	  /* -webkit-transform: translate3d(0, 40px, 0);
+	  transform: translate3d(0, 40px, 0); */
 	}
   
 	to {

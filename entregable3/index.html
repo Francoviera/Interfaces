@@ -7,6 +7,8 @@
     <title>Web</title>
     <link rel="stylesheet" href="css/estilo.css">
     <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/animacion.css">
+
     <script src="js/js.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
@@ -39,29 +41,40 @@
                 </div>
               </nav>
         </header>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row ">
-                <div class="col-md-12 countdown">
-                    <div class="countdown__text">
-                        <h1>Lanzamiento de ""</h1>
-                        <h4>Se Estrena en</h4>
+                <div class="col-md-12 fondoCountdown">
+                    <div class="row ">
+                        <div class="col-md-12 countdown">
+                            <div class="countdown__text">
+                                <!-- <h1>The Walking Dead</h1> -->
+                                <h4>Se Estrena en</h4>
+                            </div>
+                            <div class="countdown__timer">
+                                <div class="countdown__item">
+                                    <span class="countdown_days">0</span>
+                                    <p>Dias</p>
+                                </div>
+                                <div class="countdown__item">
+                                    <span class="countdown_hours">0</span>
+                                    <p>Horas</p>
+                                </div>
+                                <div class="countdown__item">
+                                    <span class="countdown_minutes">0</span>
+                                    <p>Minutos</p>
+                                </div>
+                                <div class="countdown__item">
+                                    <span class="countdown_seconds">0</span>
+                                    <p>Segundos</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="countdown__timer">
-                        <div class="countdown__item">
-                            <span class="countdown_days">0</span>
-                            <p>Dias</p>
-                        </div>
-                        <div class="countdown__item">
-                            <span class="countdown_hours">0</span>
-                            <p>Horas</p>
-                        </div>
-                        <div class="countdown__item">
-                            <span class="countdown_minutes">0</span>
-                            <p>Minutos</p>
-                        </div>
-                        <div class="countdown__item">
-                            <span class="countdown_seconds">0</span>
-                            <p>Segundos</p>
+                    <div class="row ">
+                        <div class="col-md-12" >
+                            <img class="imgSangre" src="images/sangre.png" ></img>
+                            <img class="imgRick" src="images/rick2.png" ></img>
+                            <img class="imgNegan" src="images/negan.png"></img>
                         </div>
                     </div>
                 </div>
