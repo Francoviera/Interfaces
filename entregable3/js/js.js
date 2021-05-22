@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function (){
 
                 //se oculta el preloader
                 preloder.classList.toggle("hide");
-
+                
                 //se espera un segundo y se hace un fadeIn al contenido de la pagina
                 setTimeout(function(){
                     preloder.classList.toggle("ocultar");
@@ -41,11 +41,12 @@ document.addEventListener("DOMContentLoaded", function (){
                     countdown.classList.toggle("ftco-animated");
                     document.querySelector(".imgRick").classList.toggle("reducirImg");
                     document.querySelector(".imgNegan").classList.toggle("reducirImg");
-                    document.querySelector(".imgSangre").classList.toggle("aumentarImg");
                     setTimeout(function(){
-                        document.querySelector(".imgSangre").classList.toggle("hide");
+                        document.querySelector(".imgSangre").classList.toggle("hideBlood");
                     }, 1000);
-                    // reduceImageCountdown();
+                    setTimeout(function(){
+                        document.querySelector(".imgZombieRoto").classList.toggle("showPermanente");  
+                    }, 5000);
 
                 }, 1050);
                 //se frena el interval

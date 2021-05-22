@@ -8,27 +8,36 @@
 	height: 45%;
 	width: 45%;
 	float: left;
-	margin-top: 10%;
+	/* margin-top: 10%; */
 
 }
 .imgNegan{
 	float: right;
 	height: 45%;
 	width: 45%;
-	margin-top: 10%;
+	/* margin-top: 10%; */
+}
+.imgZombieRoto{
+	/* float: right; */
+	margin-left: 9%;
+	height: 35%;
+	width: 25%;
+	position: absolute;
+	opacity: 0;
 }
 .imgSangre{
 	position: absolute;
 	float: left;
-	/* height: 45%;
-	width: 100%; */
-	margin-top: 10%;
+	height: 60%;
+	width: 80%;
+	margin-left: 6%;
+	margin-top: 2%;
 	opacity: 0;
 }
 .fondoCountdown{
-    background-image: url("../images/fondo3.webp");
+    background-image: url("../images/fondo3.jpg");
 	background-repeat: no-repeat;
-    background-size: 100% 71%;
+    background-size: 100% 62%;
 	position: inherit;
 }
 
@@ -37,11 +46,6 @@
 	margin-bottom: 30px;
 }
 
-.countdown__item {
-	display: inline-block;
-	margin-right: 80px;
-	margin-bottom: 30px;
-}
 .countdown__item {
 	display: inline-block;
 	margin-right: 80px;
@@ -63,7 +67,7 @@
 	margin-bottom: 0;
 }
 .countdown__text {
-	margin-top: 5%;
+	margin-top: 3%;
 	text-align: center;
 	margin-bottom: 36px;
 }
