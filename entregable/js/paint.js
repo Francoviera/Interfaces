@@ -40,10 +40,18 @@ let canvasPaint = document.getElementById('canvasPaint');
 
     btnBorrar.addEventListener('click',() => {
         borrado= true;
+        btnDibujar.classList.remove('btn-success');
+        btnDibujar.classList.add('btn-secondary');
+        btnBorrar.classList.add('btn-success');
+        btnBorrar.classList.remove('btn-secondary');
     });
 
     btnDibujar.addEventListener('click',() => {
         borrado= false;
+        btnDibujar.classList.add('btn-success');
+        btnDibujar.classList.remove('btn-secondary');
+        btnBorrar.classList.remove('btn-success');
+        btnBorrar.classList.add('btn-secondary');
     });
 
     canvasPaint.addEventListener('mousemove',dibujar);
