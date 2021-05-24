@@ -1,20 +1,48 @@
 document.addEventListener("DOMContentLoaded", function (){
     let spinner= document.querySelector(".spinner");
     let preloder= document.querySelector("#preloder");
-    let header= document.querySelector(".header");
+    let home= document.querySelector(".home");
     let footer= document.querySelector(".footer");
+    let imgNegan= document.querySelector(".imgNegan");
+    let imgRick= document.querySelector(".imgRick");
     let countdown= document.querySelector(".countdown");
     let page= document.querySelector(".page");
+
+    let altura= 900;
 
 
     let percent= document.querySelector(".percent");
 
+    window.onscroll = function() {
+        let percentY= (window.scrollY/70);
+        let widthImg= 44-(percentY+1);
+        let heigthImg= 57-(percentY+1);
+
+        console.log((percentY+1))
+        console.log(widthImg)
+
+        let alturaY= window.scrollY;
+        // home.style.height= `${altura+alturaY}px`;
+        home.style.marginTop= `${alturaY}px`;
+
+        
+        imgRick.style.width= `${widthImg}%`;
+        imgRick.style.height= `${heigthImg}%`;
+        imgNegan.style.width= `${widthImg}%`;
+        imgNegan.style.height= `${heigthImg}%`;
+        if((percentY+1) > 7){
+            console.log("OPACITY ",((percentY-6)/10))
+            // home.style.opacity= (1-(percentY-6)/10);
+            home.style.filter= "alpha(opacity="+((1-(percentY-6)/10)*10)+")";
+        }
+    };
+    
+    function reducirImg(){
+        
+    }
+
     let loading= true;
     loadPage();
-
-
-
-
 
     function loadPage() {
         let i= 0;
@@ -40,14 +68,17 @@ document.addEventListener("DOMContentLoaded", function (){
                     countdown.classList.toggle("fadeInUp");
                     countdown.classList.toggle("ftco-animate");
                     countdown.classList.toggle("ftco-animated");
-                    document.querySelector(".imgRick").classList.toggle("reducirImg");
-                    document.querySelector(".imgNegan").classList.toggle("reducirImg");
+                    imgRick.classList.toggle("reducirImg");
+                    imgNegan.classList.toggle("reducirImg");
                     setTimeout(function(){
                         document.querySelector(".imgSangre").classList.toggle("hideBlood");
+                        imgRick.classList.toggle("reducirImg");
+                        imgNegan.classList.toggle("reducirImg");
+
                     }, 1000);
-                    setTimeout(function(){
-                        document.querySelector(".imgZombieRoto").classList.toggle("showPermanente");  
-                    }, 5000);
+                    // setTimeout(function(){
+                    //     document.querySelector(".imgZombieRoto").classList.toggle("showPermanente");  
+                    // }, 5000);
 
                 }, 1050);
                 //se frena el interval

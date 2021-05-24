@@ -3,8 +3,17 @@
     display: none;
 	visibility: hidden;
 }
+body{ 
+	background-color:black;
+}
 .loadingDivText{
     margin-top: 20%;
+}
+.content{
+	scroll-behavior: smooth;
+	transform-style: preserve-3d;
+	z-index: -100;
+
 }
 .home{
     background-image: url("../images/fondo3.jpg");
@@ -14,14 +23,13 @@
 	background-size: 100% 100%;
 	background-color: black;
 	/* bottom: 100%; */
-	
-	/* position: absolute; */
+	position: relative;
 }
-.home::before ~ .countdown{
-	
-		transform: translateZ(-3px) scale(2);
-		z-index: -1;
-	
+.home:before{
+	position: absolute;
+	z-index: 1000;
+	background:linear-gradient(transparent, #fff);
+	margin-bottom: 10%;
 }
 .carrrousel{
 	background-image: url("../images/fondo3.jpg");
@@ -32,18 +40,18 @@
 
 }
 .imgRick{
-	width: 25%;
-	height: 25%;
+	width: 44%;
+		height: 57%;
 	float: left;
-	margin-top: 10%;
+	margin-top: 5%;
 	position: absolute;
 
 }
 .imgNegan{
 	float: right;
-	width: 25%;
-	height: 25%;
-	margin-top: 10%;
+	width: 44%;
+		height: 57%;
+		margin-top: 5%;
 	/* position: absolute; */
 
 }
