@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function (){
                 //se espera un segundo y se hace un fadeIn al contenido de la pagina
                 setTimeout(function(){
                     preloder.classList.toggle("ocultar");
+                    document.querySelector(".center").classList.toggle("ocultar");
                     page.classList.toggle("ocultar");
                     page.classList.toggle("show");  
                 }, 1000);
