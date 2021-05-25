@@ -115,7 +115,23 @@ nav li {
 	height: 100vh;
 	/* opacity: 0; */
 	/* margin-top: 15%; */
+	position: relative;
+}
+.imgCard {
+	/* position: absolute; */
+	/* max-width: 100%; */
+	opacity: 0.5;
+}
+.imgCard:hover {	
+	transition: all ease 1250ms;
+	opacity: 1;
+	transform: perspective(2000px) rotateX(0deg) rotateY(30deg) rotateZ(0deg) translateX(-30px) translateY(0px) translateZ(0px);
 
+}
+  
+.imgCard{
+	height: 100%;
+	width: 33.05%;
 }
 .imgCarousel{
 	margin-top: 100px;
