@@ -121,7 +121,23 @@
 
 	}
 }
-
+.desplazarNavArriba{
+	animation: desplazarArriba 1s;
+	animation-fill-mode: forwards;
+	
+}
+@keyframes desplazarArriba{
+    0%{height: 6%;}
+    100%{height: 0%;}
+}
+.desplazarNavAbajo{
+	animation: desplazarAbajo 1s;
+	animation-fill-mode: forwards;
+}
+@keyframes desplazarAbajo{
+    0%{height: 0%;}
+    100%{height: 6%;}
+}
 .fadeOut{
     animation-name:fadeOut
 }

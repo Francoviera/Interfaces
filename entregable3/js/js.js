@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", function (){
     let spinner= document.querySelector(".spinner");
     let preloder= document.querySelector("#preloder");
     let home= document.querySelector(".home");
-    let footer= document.querySelector(".footer");
+    let nav= document.querySelector(".nav");
+    let iconMenu= document.querySelector(".iconMenu");
     let imgNegan= document.querySelector(".imgNegan");
     let imgRick= document.querySelector(".imgRick");
     let countdown= document.querySelector(".countdown");
@@ -24,8 +25,20 @@ document.addEventListener("DOMContentLoaded", function (){
         let alturaY= window.scrollY;
         // home.style.height= `${altura+alturaY}px`;
 
+        //agrego margen para que no se desplaze la pantalla
         if(((percentY-5)/10) < 1){
             home.style.marginTop= `${alturaY}px`;
+        }
+
+        //Oculto nav
+        if(Math.round(percentY+1) >= 5){
+            nav.classList.add("desplazarNavArriba");
+            nav.classList.remove("desplazarNavAbajo");
+            iconMenu.classList.add("ocultar");
+        }else{
+            nav.classList.remove("desplazarNavAbajo");
+            nav.classList.add("desplazarNavAbajo");
+            iconMenu.classList.remove("ocultar");
         }
         
         
