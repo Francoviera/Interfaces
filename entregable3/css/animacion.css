@@ -89,7 +89,12 @@
     animation: fadein 0.5s;
 }
 .showPermanente{
-	animation: fadein 0.5s;
+	animation: fadein 3s;
+	animation-fill-mode: forwards;
+
+}
+.hidePermanente{
+    animation: fadeOut 1s;
 	animation-fill-mode: forwards;
 
 }

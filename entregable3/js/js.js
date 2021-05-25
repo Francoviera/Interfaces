@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function (){
     let spinner= document.querySelector(".spinner");
     let preloder= document.querySelector("#preloder");
     let home= document.querySelector(".home");
+    let carrousel= document.querySelector(".carrousel");
+
     let nav= document.querySelector(".nav");
     let iconMenu= document.querySelector(".iconMenu");
     let imgNegan= document.querySelector(".imgNegan");
@@ -47,9 +49,18 @@ document.addEventListener("DOMContentLoaded", function (){
         imgNegan.style.width= `${widthImg}%`;
         imgNegan.style.height= `${heigthImg}%`;
         if((percentY+1) > 6){
-            console.log("OPACITY ",((percentY-5)/10))
             home.style.opacity= (1-(percentY-5)/10);
             home.style.filter= "alpha(opacity="+((1-(percentY-5)/10)*10)+")";
+            if((1-(percentY-5)/10) <= 0){
+                console.log("MOSTRAR")
+                carrousel.classList.add("showPermanente");
+                carrousel.classList.remove("hidePermanente");
+            }else{
+                carrousel.classList.add("hidePermanente");
+                carrousel.classList.remove("showPermanente");   
+                console.log("Ocultar")
+            }
+            // carrousel.style.filter= "alpha(opacity="+((1-(percentY-7)/10)*10)+")";
         }
     };
     
