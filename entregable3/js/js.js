@@ -23,17 +23,20 @@ document.addEventListener("DOMContentLoaded", function (){
 
         let alturaY= window.scrollY;
         // home.style.height= `${altura+alturaY}px`;
-        home.style.marginTop= `${alturaY}px`;
 
+        if(((percentY-5)/10) < 1){
+            home.style.marginTop= `${alturaY}px`;
+        }
+        
         
         imgRick.style.width= `${widthImg}%`;
         imgRick.style.height= `${heigthImg}%`;
         imgNegan.style.width= `${widthImg}%`;
         imgNegan.style.height= `${heigthImg}%`;
-        if((percentY+1) > 7){
-            console.log("OPACITY ",((percentY-6)/10))
-            // home.style.opacity= (1-(percentY-6)/10);
-            home.style.filter= "alpha(opacity="+((1-(percentY-6)/10)*10)+")";
+        if((percentY+1) > 6){
+            console.log("OPACITY ",((percentY-5)/10))
+            home.style.opacity= (1-(percentY-5)/10);
+            home.style.filter= "alpha(opacity="+((1-(percentY-5)/10)*10)+")";
         }
     };
     
