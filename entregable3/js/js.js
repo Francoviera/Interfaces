@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function (){
     let spinner= document.querySelector(".spinner");
     let preloder= document.querySelector("#preloder");
     let home= document.querySelector(".home");
+    let content= document.querySelector(".content");
     let carrousel= document.querySelector(".carrousel");
 
     let nav= document.querySelector(".nav");
@@ -21,8 +22,8 @@ document.addEventListener("DOMContentLoaded", function (){
         let widthImg= 44-(percentY+1);
         let heigthImg= 57-(percentY+1);
 
-        console.log((percentY+1))
-        console.log(widthImg)
+        // console.log((percentY+1))
+        // console.log(widthImg)
 
         let alturaY= window.scrollY;
         // home.style.height= `${altura+alturaY}px`;
