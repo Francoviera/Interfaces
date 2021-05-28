@@ -4,10 +4,11 @@
 	visibility: hidden;
 }
 body{ 
-	/* background-color:black; */
+	background-color:black;
 	/* background: #1D1818; */
-	background-image: url("../images/fondo3.jpg");
-	background-repeat: no-repeat;
+	/* background-image: url("../images/fondo3.jpg");
+	background-repeat: no-repeat; */
+	overflow-x: hidden;
 }
 /* navBar */
 
@@ -106,33 +107,34 @@ nav li {
 
 .carrousel{
 	/* background-image: url("../images/fondo3.jpg"); */
-	background-color: black;
+	 /* background-color: black; */
 	width: 100%;
-	height: 100vh;
+	height: 100vh; 
 	opacity: 0;
 	/* margin-top: 15%; */
 
 }
 .cards{
 	background-color: rgb(0, 0, 0);
-	width: 100%;
+	/* width: 100%; */
 	height: 100vh;
 	/* opacity: 0; */
-	/* margin-top: 15%; */
-	position: absolute;
+	margin-top: 10%;
+	/* position: absolute; */
 }
 .imgCard {
 	/* position: absolute; */
-	width: 100%;
+	/* width: 100%; */
 	opacity: 0.5;
-	height: 100vh;
-
-
+	height: 100%;
+	/* width: 100%; */
 }
 .imgDarylCard{
 	width: 33%;
 	height: 100%;
 	display: inline-block;
+	/* position: relative; */
+
 }
 .imgNeganCard{
 	width: 33%;
@@ -147,25 +149,24 @@ nav li {
 
 }
 .imgDarylCard:hover {	
-	transition: all ease 1250ms;
-	opacity: 1;
-	transform: perspective(2000px) rotateX(0deg) rotateY(20deg) rotateZ(1deg) translateX(-20px) translateY(0px) translateZ(10px);
 	width: 40%;
 	height: 90%;
-	margin-left: 2%;
+	transition: all ease 1250ms;
+	opacity: 1;
+	transform: perspective(2000px) rotateX(0deg) rotateY(2deg) rotateZ(1deg) translateX(-20px) translateY(0px) translateZ(10px);
+	margin-left: 3%;
 }
 .imgRickCard:hover {	
 	transition: all ease 1250ms;
 	opacity: 1;
-	transform: perspective(0px) rotateX(0deg) rotateY(10deg) rotateZ(0deg) translateX(0px) translateY(10px) translateZ(0px);
+	transform: perspective(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateX(0px) translateY(10px) translateZ(0px);
 	width: 40%;
 	height: 90%;
-	
 }
 .imgNeganCard:hover {	
 	transition: all ease 1250ms;
 	opacity: 1;
-	transform: perspective(2000px) rotateX(0deg) rotateY(-20deg) rotateZ(1deg) translateX(20px) translateY(0px) translateZ(10px);
+	transform: perspective(2000px) rotateX(0deg) rotateY(-2deg) rotateZ(1deg) translateX(20px) translateY(0px) translateZ(10px);
 	width: 30%;
 	height: 90%;
 	margin-right: 2%; 
@@ -173,18 +174,18 @@ nav li {
   
 .imgDarylCard:hover  ~ .imgNeganCard, .imgDarylCard:hover  ~  .imgRickCard{
 	/* width: 25.5%; */
-	width: 27.5%;
+	width: 25.5%;
 	/* opacity: 0; */
 	margin-right: 1%; 
-
 }
+
 .imgRickCard:hover  ~ .imgNeganCard, .imgRickCard:hover  ~ .imgDarylCard{
 	width: 25.5%;
 }
 
 
  .imgNeganCard:hover  ~  .imgRickCard{
-	/* width: 25.5%; */
+	width: 200px;
 	/* width: 20px; */
 	opacity: 0;
 }
@@ -282,3 +283,4 @@ nav li {
 	opacity: 0;
 	visibility: hidden; 
 }
+
