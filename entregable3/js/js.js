@@ -12,6 +12,32 @@ document.addEventListener("DOMContentLoaded", function (){
     let countdown= document.querySelector(".countdown");
     let page= document.querySelector(".page");
 
+    // let btnHome= document.querySelector(".btnHome");
+    let btnEscenas= document.querySelector(".btnEscenas");
+    let btnPersonajes= document.querySelector(".btnPersonajes");
+    let btnContacto= document.querySelector(".btnContacto");
+
+    // btnHome.addEventListener("click", function (){
+    //     window.scrollTo(0, 0);
+    //     console.log("click")
+
+    // });
+    btnEscenas.addEventListener("click", function (e){
+        e.preventDefault();
+        window.scrollTo(0, 1700);
+        console.log("click")
+    });
+    btnPersonajes.addEventListener("click", function (e){
+        e.preventDefault();
+        window.scrollTo(0, 2663);
+        console.log("click")
+    });
+    btnContacto.addEventListener("click", function (e){
+        e.preventDefault();
+        window.scrollTo(0, 3273);
+        console.log("click")
+    });
+
     let altura= 900;
 
 
@@ -26,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function (){
         // console.log(widthImg)
 
         let alturaY= window.scrollY;
+        console.log("y", window.scrollY)
         // home.style.height= `${altura+alturaY}px`;
 
         //agrego margen para que no se desplaze la pantalla
