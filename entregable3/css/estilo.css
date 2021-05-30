@@ -283,3 +283,12 @@ nav li {
 	opacity: 0;
 	visibility: hidden; 
 }
+
+.formulario {
+	width: 80%;
+	height: 100vh;
+	margin-top: 5%;
+}
+.formulario form{
+	margin-left: 15%;
+}
