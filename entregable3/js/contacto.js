@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", function (){
-    let spinner= document.querySelector(".spinner");
     let preloder= document.querySelector("#preloder");
     let home= document.querySelector(".home");
-    let content= document.querySelector(".content");
-    let carrousel= document.querySelector(".carrousel");
+    let formulario= document.querySelector(".formulario");
 
     let imgNegan= document.querySelector(".imgNegan");
     let imgRick= document.querySelector(".imgRick");
@@ -28,26 +26,6 @@ document.addEventListener("DOMContentLoaded", function (){
         iconMenuClose.classList.toggle("ocultar");
         console.log("ee")
     });
-    // btnHome.addEventListener("click", function (){
-    //     window.scrollTo(0, 0);
-    //     console.log("click")
-
-    // });
-    // btnEscenas.addEventListener("click", function (e){
-    //     e.preventDefault();
-    //     window.scrollTo(0, 1700);
-    //     console.log("click")
-    // });
-    // btnPersonajes.addEventListener("click", function (e){
-    //     e.preventDefault();
-    //     window.scrollTo(0, 2663);
-    //     console.log("click")
-    // });
-    // btnContacto.addEventListener("click", function (e){
-    //     e.preventDefault();
-    //     window.scrollTo(0, 3273);
-    //     console.log("click")
-    // });
 
     let altura= 900;
 
@@ -92,22 +70,17 @@ document.addEventListener("DOMContentLoaded", function (){
             home.style.filter= "alpha(opacity="+((1-(percentY-5)/10)*10)+")";
             if((1-(percentY-5)/10) <= 0){
                 console.log("MOSTRAR")
-                carrousel.classList.add("showPermanente");
-                carrousel.classList.remove("hidePermanente");
+                formulario.classList.add("showPermanente");
+                formulario.classList.remove("hidePermanente");
             }else{
-                carrousel.classList.add("hidePermanente");
-                carrousel.classList.remove("showPermanente");   
+                formulario.classList.add("hidePermanente");
+                formulario.classList.remove("showPermanente");   
                 console.log("Ocultar")
             }
             // carrousel.style.filter= "alpha(opacity="+((1-(percentY-7)/10)*10)+")";
         }
     };
     
-    function reducirImg(){
-        
-    }
-
-    let loading= true;
     loadPage();
 
     function loadPage() {
