@@ -96,7 +96,10 @@
 .hidePermanente{
     animation: fadeOut 1s;
 	animation-fill-mode: forwards;
-
+}
+.hidePermanentePersonajes{
+	animation: fadeOut .4s;
+	animation-fill-mode: forwards;
 }
 
 .reducirImg {

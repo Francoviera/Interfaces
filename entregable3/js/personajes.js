@@ -71,9 +71,9 @@ document.addEventListener("DOMContentLoaded", function (){
             if((1-(percentY-5)/10) <= 0){
                 console.log("MOSTRAR")
                 personajes.classList.add("showPermanente");
-                personajes.classList.remove("hidePermanente");
+                personajes.classList.remove("hidePermanentePersonajes");
             }else{
-                personajes.classList.add("hidePermanente");
+                personajes.classList.add("hidePermanentePersonajes");
                 personajes.classList.remove("showPermanente");   
                 console.log("Ocultar")
             }
