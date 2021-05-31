@@ -17,6 +17,16 @@ document.addEventListener("DOMContentLoaded", function (){
     let btnPersonajes= document.querySelector(".btnPersonajes");
     let btnContacto= document.querySelector(".btnContacto");
 
+
+    //NAV
+    let iconMenuClose = document.querySelector(".iconMenuClose");
+    let menu= document.querySelector("#menu");
+
+    menu.addEventListener("change", function (){
+        iconMenu.classList.toggle("ocultar");
+        iconMenuClose.classList.toggle("ocultar");
+        console.log("ee")
+    });
     // btnHome.addEventListener("click", function (){
     //     window.scrollTo(0, 0);
     //     console.log("click")
