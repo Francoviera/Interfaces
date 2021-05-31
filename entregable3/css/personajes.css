@@ -26,7 +26,7 @@
 .item{
     border-top: 2px solid #252525;
     border-radius: 10px;
-    background-color: #424344;
+    background-color: #92969bc7;
 
 }
 .btn{
@@ -102,10 +102,29 @@
     margin-right: 0.5%;
 }
 .imgPersonajes img{
-    width: 100%;
-    height: 100%;
+    width: 70%;
+    height: 70%;
+    display: inline-block;
+    opacity: 0.9;
+    border: 1px solid;
+    border-radius: 10px;
+    filter: blur(4px);
+}
+.imgPersonajes img:hover {	
+	width: 95%;
+	height: 95%;
+	transition: all ease 1250ms;
+	opacity: 1;
+	transform: perspective(2000px) rotateX(20deg) rotateY(4deg) rotateZ(3deg) translateX(-20px) translateY(0px) translateZ(20px);
+	margin-left: 10%;
+    margin-top: 5%;
+    filter: blur(0);
+}
+.divInfoActors{
+    width: 50%;
+    height: 50%;
     display: inline-block;
 }
-.imgPersonajes p{
-    display: inline-block;
+.divInfoActors p{
+    margin-top: 5%;
 }

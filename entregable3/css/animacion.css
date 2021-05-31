@@ -40,6 +40,29 @@
 		color: #f4d836;
 	}
 }
+.loadingText{
+    animation: loadingText 0.8s linear infinite;
+	-webkit-animation: loadingText 0.8s linear infinite;
+}
+
+.alertChangeTime{
+    animation: alertChangeTime 1s linear infinite;
+}
+.alertChangeTimeMinutes{
+	animation: alertChangeTime 2s linear;
+}
+
+@keyframes alertChangeTime {
+	0% {
+		color: #ffffff;
+	}
+	50% {
+		color: rgb(255, 0, 0);
+	}
+	100% {
+		color: #ffffff;
+	}
+}
 
 @keyframes loader {
 	0% {

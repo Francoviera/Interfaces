@@ -173,6 +173,12 @@ document.addEventListener("DOMContentLoaded", function (){
         countdown_minutes.innerHTML= Math.floor(diff / 60000);
         diff = diff % 60000;
         countdown_seconds.innerHTML= Math.floor(diff / 1000);
+        if(Math.floor(diff / 1000) == 0){
+            document.querySelector(".minutes").classList.add("alertChangeTimeMinutes");
+            setTimeout(function(){
+                document.querySelector(".minutes").classList.remove("alertChangeTimeMinutes");
+            }, 1100);
+        }
     }
 
 
