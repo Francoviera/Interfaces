@@ -1,10 +1,11 @@
+document.addEventListener("DOMContentLoaded", function (){
+    let checkbox = document.querySelector("input[name=checkbox]");
+    let btns = document.querySelectorAll(".btn-grid");
 
-// const checkbox = document.querySelector('.checkboxVerified');
-// const btns = document.querySelectorAll(".my-form button");
-
-// checkbox.addEventListener("change", function() {
-//   const checked = this.checked;
-//   for (const btn of btns) {
-//     checked ? (btn.disabled = false) : (btn.disabled = true);
-//   }
-// });
+    checkbox.addEventListener("change", function() {
+    let checked = this.checked;
+    for (let btn of btns) {
+        checked ? (btn.disabled = false) : (btn.disabled = true);
+    }
+    });
+});

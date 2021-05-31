@@ -26,7 +26,7 @@ ul li button{
 }
   
 nav input:checked  ~ ul{
-	display:block;
+	display: inline-block;
 	position: absolute;
 	animation: mostrarUls .8s;
 	animation-fill-mode: forwards;
@@ -156,6 +156,27 @@ nav li {
 	height: 100%;
 	display: inline-block;
 
+}
+.spanDaryl{
+	position: absolute;
+	margin-top: 42%;
+	margin-left: 13%;
+	font-size: 200%;
+	color: #fff;
+}
+.spanRick{
+	position: absolute;
+	margin-top: 42%;
+	margin-left: 13%;
+	font-size: 200%;
+	color: #fff;
+}
+.spanNegan{
+	position: absolute;
+	margin-top: 42%;
+	margin-left: 13%;
+	font-size: 200%;
+	color: #fff;
 }
 .imgDarylCard:hover {	
 	width: 40%;
