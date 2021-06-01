@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function (){
 
         //agrego margen para que no se desplaze la pantalla
         if(((percentY-5)/10) < 1){
-            home.style.marginTop= `${alturaY}px`;
+            document.querySelector(".home").style.marginTop= `${alturaY}px`;
         }
 
         //Oculto nav

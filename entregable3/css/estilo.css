@@ -11,7 +11,13 @@ body{
 	overflow-x: hidden;
 }
 /* navBar */
-a{text-decoration: none;}
+.ulLinks li a{
+	text-decoration: none;
+	color: beige;
+}
+.ulLinks li a:hover{
+	color: rgb(255, 153, 0);
+}
 nav ul{
 	display: none;
 }
@@ -25,7 +31,7 @@ ul li button{
 	outline: inherit;
 }
   
-nav input:checked  ~ ul{
+nav input:checked  ~ .ulLinks{
 	display: inline-block;
 	position: absolute;
 	animation: mostrarUls .8s;
@@ -49,7 +55,7 @@ nav input:checked  ~ ul{
 		/* width: 25%;
 		height: 30%; */
 		width: 15%;
-		height: 20%;
+		height: 35%;
 		/* margin-top: 5%; */
 
 	}
@@ -245,7 +251,7 @@ nav li {
 	height: 57%;
 	float: left;
 	margin-top: 5%;
-	position: absolute;
+	/* position: absolute; */
 
 }
 .imgNegan{
@@ -270,13 +276,17 @@ nav li {
 	height: 60%;
 	width: 80%;
 	margin-left: 6%;
-	margin-top: 2%;
+	margin-top: 14%;
 	opacity: 0;
 }
 
 .countdown__timer {
 	text-align: center;
 	margin-bottom: 30px;
+	position: relative;
+	width: 80%;
+	float: right;
+	margin-right: 10%;
 }
 
 .countdown__item {
