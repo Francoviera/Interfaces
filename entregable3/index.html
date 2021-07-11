@@ -4,14 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Walking Dead</title>
+    <title>Web</title>
     <link rel="stylesheet" href="css/estilo.css">
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/animacion.css">
-    <link rel="stylesheet" href="css/carousel.css">
-    <link rel="stylesheet" href="css/formulario.css">
-
-
 
     <script src="js/js.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
@@ -34,20 +30,18 @@
     <div class="page ocultar">
         <div class="content">
             <div class="home">
-                
+                <nav class="nav">
+                    <input type="checkbox" id="menu">
+                    <label for="menu"> <i class="iconMenu fas fa-bars"></i> </label>
+                    <ul>
+                        <li>Home</li>
+                        <li>Personajes</li>
+                        <li>Escenas</li>
+                        <li>Contacto</li>
+                    </ul>
+                </nav>
                     <div class="countdown">
-                      <nav class="nav">
-                          <input type="checkbox" id="menu">
-                          <label for="menu"><i class="iconMenu fas fa-bars"></i><i class="iconMenuClose ocultar fas fa-align-left"></i></label>
-                          <ul class="ulLinks">
-                            <li><a href="https://francoviera.github.io/Interfaces/entregable3/index.html">Home</a></li>
-                            <li><a href="https://francoviera.github.io/Interfaces/entregable3/contacto.html">Contacto</a></li>
-                            <li><a href="https://francoviera.github.io/Interfaces/entregable3/personajes.html">Personajes</a></li>
-                            <li><a href="https://www.foxtv.es/series/fox/the-walking-dead">FOX</a></li>
-                            <li><a href="https://pelisplushd.net/serie/the-walking-dead/temporada/1/capitulo/1">Ver ahora</a></li>
-      
-                          </ul>
-                        </nav>
+                        <div></div>
                         <div class="countdown__text">
                             <!-- <img class="imgZombieRoto" src="images/zombieRoto.png" ></img> -->
                             <h4>Se Estrena en</h4>
@@ -63,11 +57,11 @@
                             </div>
                             <div class="countdown__item">
                                 <span class="countdown_minutes">0</span>
-                                <p class="minutes">Minutos</p>
+                                <p>Minutos</p>
                             </div>
                             <div class="countdown__item">
                                 <span class="countdown_seconds">0</span>
-                                <p class="alertChangeTime">Segundos</p>
+                                <p>Segundos</p>
                             </div>
                         </div>
                     </div>
@@ -77,34 +71,16 @@
                 <!-- </div> -->
             </div>
             <div class="carrousel">
-                <div class="slider">
-                    <ul>
-                        <li>
-                            <img src="images/carrousel1.jpg" alt="">
-                        </li>
-                        <li>
-                          <img src="images/carrousel2.jpg" alt="">
-                        </li>
-                        <li>
-                            <img src="images/carrousel3.jpg" alt="">
-                        </li>
-                        <li>
-                            <img src="images/carrousel1.jpg" alt="">
-                        </li>
-                    </ul>
-                </div>
+
             </div>
             <div class="cards">
                 <!-- <div class=""> -->
-                  <span class="spanDaryl">Daryl 🏹</span>
                     <img class="imgCard imgDarylCard" src="images/darylCard1.jpg" alt="Daryl">
                 <!-- </div> -->
                 <!-- <div class=""> -->
-                  <span class="spanDaryl">Rick 👮</span>
                     <img class="imgCard imgRickCard" src="images/rickCard4.jpg" alt="Rick Grames">
                 <!-- </div> -->
                 <!-- <div class=""> -->
-                  <span class="spanDaryl">Negan 💀</span>
                     <img class="imgCard imgNeganCard" src="images/neganCard2.jpg" alt="Negan">
                 <!-- </div> -->
             </div>
